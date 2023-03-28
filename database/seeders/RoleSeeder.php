@@ -39,6 +39,8 @@ class RoleSeeder extends Seeder
             PermissionConst::GESTION_TIPO_PAGO,
             PermissionConst::GESTION_TIPO_TRANSACCION,
             PermissionConst::GESTION_TIPO_DOCUMENTOS,
+            PermissionConst::GESTION_COMPETENCIAS,
+
 
         ]);
 

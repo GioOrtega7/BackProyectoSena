@@ -15,6 +15,7 @@ use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserCo
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+use App\Http\Controllers\CompetenciasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,6 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
+
+Route::resource('competencias',CompetenciasController::class);
+

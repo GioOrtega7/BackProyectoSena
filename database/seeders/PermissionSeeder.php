@@ -24,6 +24,8 @@ class PermissionSeeder extends Seeder
         $this->savePermission(PermissionConst::GESTION_MEDIO_PAGO, "Gestión medios de pago");
         $this->savePermission(PermissionConst::GESTION_TIPO_PAGO, "Gestión de tipos de pago");
         $this->savePermission(PermissionConst::GESTION_TIPO_TRANSACCION, "Gestión de tipos de transacciòn");
+        $this->savePermission(PermissionConst::GESTION_COMPETENCIAS, "Gestión de competencias");
+
     }
 
     private function savePermission($name, $description)
