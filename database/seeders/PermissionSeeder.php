@@ -23,8 +23,16 @@ class PermissionSeeder extends Seeder
         $this->savePermission(PermissionConst::GESTION_TIPO_DOCUMENTOS, "Gestión de tipos de documento");
         $this->savePermission(PermissionConst::GESTION_MEDIO_PAGO, "Gestión medios de pago");
         $this->savePermission(PermissionConst::GESTION_TIPO_PAGO, "Gestión de tipos de pago");
+<<<<<<< HEAD
         $this->savePermission(PermissionConst::GESTION_TIPO_TRANSACCION, "Gestión de tipos de transacciòn");
         $this->savePermission(PermissionConst::GESTION_JORNADA, "Gestion de Jornada");
+=======
+        $this->savePermission(PermissionConst::GESTION_TIPO_TRANSACCION, "Gestión de tipos de transacción");
+        $this->savePermission(PermissionConst::GESTION_PAGO_NOMINA, "Gestión de pagos de Nomina");
+        $this->savePermission(PermissionConst::GESTION_GRUPO, "Gestion de grupos");// se crea permiso en archivo seeder
+        $this->savePermission(PermissionConst::GESTION_TIPO_GRUPO, "Gestion de tipos de grupos");// se crea permiso en archivo seeder
+        $this->savePermission(PermissionConst::GESTION_MODAL, "Gestion modal");
+>>>>>>> e3805782842a9940c72d8b2e0d8bbc0a2af666ae
     }
 
     private function savePermission($name, $description)
@@ -34,4 +42,5 @@ class PermissionSeeder extends Seeder
         $permission->description = $description;
         $permission->save();
     }
+
 }

@@ -12,11 +12,18 @@ use App\Http\Controllers\gestion_tipo_documento\TipoDocumentoController;
 use App\Http\Controllers\gestion_tipopago\TipoPagoController;
 use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
+<<<<<<< HEAD
 use App\Http\Controllers\gestion_jornada\JornadaController;
 use App\Http\Controllers\gestion_dia\DiaController;
 use App\Http\Controllers\gestion_dia_jornada\DiaJornadaController;
+=======
+>>>>>>> e3805782842a9940c72d8b2e0d8bbc0a2af666ae
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+use App\Http\Controllers\gestion_grupo\GrupoController;
+use App\Http\Controllers\gestion_grupo\TipoGrupoController;
+use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +35,7 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 
 Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -69,6 +77,7 @@ Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
 
+<<<<<<< HEAD
 //jornadas
 Route::resource('jornadas', JornadaController::class);
 //dia
@@ -77,3 +86,11 @@ Route::resource('dias', DiaController::class);
 Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
 
 
+=======
+//grupos
+Route::resource('grupos', GrupoController::class);
+//buscador para el controlador grupos
+Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
+//tipo de grupos
+Route::resource('tipogrupos', TipoGrupoController::class);
+>>>>>>> e3805782842a9940c72d8b2e0d8bbc0a2af666ae
