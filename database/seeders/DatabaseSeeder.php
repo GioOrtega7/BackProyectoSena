@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Dia;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Jornada;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,5 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
+        $this->call(DiaSeeder::class);
+
     }
 }
