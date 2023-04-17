@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Sede extends Model
 {
     use HasFactory;
 
-    protected $table = 'ciudad';
+    protected $table = 'sede';
 
-    public function departamento(){
+    public function ciudad(){
         return $this -> belongsTo(
-            Country::class,'idDepartamento'
+            City::class,'idCiudad'
         );
     }
-    public function sedes(){
+    public function infraestructuras(){
         return $this -> hasMany(
-            Sede::class,'idCiudad'
+            Infraestructura::class,'idSede'
         );
     }
 }

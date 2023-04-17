@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\CityController;
+use App\Http\Controllers\CountryController;
 use App\Http\Controllers\gestion_mediopago\MedioPagoController;
 use App\Http\Controllers\gestion_notificacion\NotificacionController;
 use App\Http\Controllers\gestion_proceso\ProcesoController;
@@ -12,11 +15,6 @@ use App\Http\Controllers\gestion_tipo_documento\TipoDocumentoController;
 use App\Http\Controllers\gestion_tipopago\TipoPagoController;
 use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
-use App\Http\Controllers\TipoProgramasController;
-use App\Http\Controllers\ProgramaController;
-use App\Http\Controllers\ProyectoFormativoController;
-use App\Http\Controllers\FaseController;
-use App\Http\Controllers\ActividadProyectoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
@@ -71,14 +69,3 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
-
-//ruta para tipo de programas
-Route::resource('tipo_programas', TipoProgramasController::class);
-//ruta para tipo de programas
-Route::resource('programas', ProgramaController::class);
-//ruta para proyecto formativo
-Route::resource('proyecto_formativo', ProyectoFormativoController::class);
-//ruta para fases
-Route::resource('fases', FaseController::class);
-//ruta para actividad de proyecto
-Route::resource('actividad_proyecto', ActividadProyectoController::class);
