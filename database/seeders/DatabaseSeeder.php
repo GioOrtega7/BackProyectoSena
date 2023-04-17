@@ -2,15 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Dia;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
-use App\Models\Jornada;
-=======
-use App\Models\TipoGrupo;
-use App\Models\Grupo;
->>>>>>> e3805782842a9940c72d8b2e0d8bbc0a2af666ae
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -45,13 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
-<<<<<<< HEAD
         $this->call(DiaSeeder::class);
-=======
 
         //TipoGrupo::factory(10) -> create();
         //Grupo::factory(10)     -> create();
->>>>>>> e3805782842a9940c72d8b2e0d8bbc0a2af666ae
 
     }
 }
