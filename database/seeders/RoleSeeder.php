@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Middleware\Permisions;
 use App\Models\ActivationCompanyUser;
 use App\Models\Person;
 use App\Models\User;
@@ -27,6 +28,7 @@ class RoleSeeder extends Seeder
         $rapidoTambo->name = "Admin";
         $rapidoTambo->idCompany = 2;
         $rapidoTambo->save();
+        
 
         $vt->syncPermissions([
             PermissionConst::GESTION_ROL_PERMISOS,
@@ -43,24 +45,32 @@ class RoleSeeder extends Seeder
             PermissionConst::GESTION_PROGRAMAS,
             PermissionConst::GESTION_FASES,
             PermissionConst::GESTION_ACTIVIDAD_PROYECTO,
-            PermissionConst::GESTION_PROYECTO_FORMATIVO
+            PermissionConst::GESTION_PROYECTO_FORMATIVO,
             
             
 
 
 
+            PermissionConst::GESTION_PAGO_NOMINA,
+            PermissionConst::GESTION_GRUPO,
+            PermissionConst::GESTION_TIPO_GRUPO,
+           
+            
         ]);
 
         $rapidoTambo->syncPermissions([
             PermissionConst::GESTION_TIPO_CONTRATO,
             PermissionConst::GESTION_USUARIO,
+            PermissionConst::GESTION_GRUPO,
+            PermissionConst::GESTION_TIPO_GRUPO,
+
         ]);
 
         $emailAdmin = "admin@gmail.com";
         Person::factory()
             ->hasUsuario(1, ['email' => $emailAdmin])
             ->create([
-                'email' => $emailAdmin
+                'email'  => $emailAdmin,
             ]);
 
 
@@ -79,5 +89,6 @@ class RoleSeeder extends Seeder
         ]);
 
         $activation->assignRole($rapidoTambo);
+
     }
 }

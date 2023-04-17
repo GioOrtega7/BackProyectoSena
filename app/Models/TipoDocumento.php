@@ -19,6 +19,7 @@ class TipoDocumento extends Model
     ];
 
     public $timestamps = false;
+    
     public function proceso()
     {
         return $this->belongsTo(Proceso::class, 'idProceso');

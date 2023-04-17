@@ -12,15 +12,9 @@ use App\Http\Controllers\gestion_tipo_documento\TipoDocumentoController;
 use App\Http\Controllers\gestion_tipopago\TipoPagoController;
 use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
-use App\Http\Controllers\TipoProgramasController;
-use App\Http\Controllers\ProgramaController;
-use App\Http\Controllers\FaseController;
-use App\Http\Controllers\ActividadProyectoController;
-use App\Http\Controllers\ProyectoFormativoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +26,7 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 
 Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 Route::post('/login', [LoginController::class, 'authenticate']);
@@ -71,16 +66,3 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
-
-//ruta para tipo de Programas
-Route::resource('tipo_programas',TipoProgramasController::class);
-//ruta para programas
-Route::resource('programas',ProgramaController::class);
-//ruta para fases
-Route::resource('fases',FaseController::class);
-//ruta para actividadProyecto
-Route::resource('actividad_proyecto',ActividadProyectoController::class);
-//ruta para proyecto formativo
-Route::resource('proyecto_formativos',ProyectoFormativoController::class);
-
-

@@ -23,7 +23,6 @@ class ProcesoController extends Controller
             $procesos->where('nombreProceso', $nombreProceso);
         }
 
-
         return response()->json($procesos->get());
     }
 
@@ -51,7 +50,6 @@ class ProcesoController extends Controller
     public function show(int $id)
     {
         $proceso = Proceso::find($id);
-
         return response()->json($proceso);
     }
 
