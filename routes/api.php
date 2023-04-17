@@ -73,14 +73,13 @@ Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
 
+
 //jornadas
 Route::resource('jornadas', JornadaController::class);
 //dia
 Route::resource('dias', DiaController::class);
 //traer diaJornada
 Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
-
-
 //grupos
 Route::resource('grupos', GrupoController::class);
 //buscador para el controlador grupos
