@@ -19,6 +19,6 @@ class PermissionConst
     const GESTION_PAGO_NOMINA      = 'GESTION_PAGO_NOMINA';
     const GESTION_GRUPO            = 'GESTION_GRUPO'; // se crea constante de permiso GRUPO
     const GESTION_TIPO_GRUPO       = 'GESTION_TIPO_GRUPO'; // se crea constante de permiso TIPO_GRUPO
-    const GESTION_MODAL            = 'GESTION_MODAL'; // se crea constante de permiso TIPO_GRUPO
+  
 
 }
