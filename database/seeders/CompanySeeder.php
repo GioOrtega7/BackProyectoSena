@@ -14,7 +14,9 @@ class CompanySeeder extends Seeder
     public function run()
     {
         \App\Models\Company::factory()->create([
-            'razonSocial' => "Virtual T"
+            'razonSocial' => "Virtual T",
+            'rutaLogo' => '/default/logoSena.png'
+
         ]);
 
         \App\Models\Company::factory()->create([
