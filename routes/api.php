@@ -32,6 +32,7 @@ use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 |
 */
 
+
 Route::get('sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 
@@ -64,7 +65,6 @@ Route::resource('medio_pagos', MedioPagoController::class);
 Route::resource('tipo_pagos', TipoPagoController::class);
 // tipo transaccion
 Route::resource('tipo_transacciones', TipoTransaccionController::class);
-
 // traer listado de los usuario por empresa
 Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers']);
 

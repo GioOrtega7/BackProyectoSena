@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Carbon\Carbon;
 
+
 class ActivationCompanyUserFactory extends Factory
 {
     /**
@@ -25,11 +26,11 @@ class ActivationCompanyUserFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id,
-            'state_id' => $this->faker->randomElement([1, 2]),
-            'company_id' => Company::inRandomOrder()->first()->id,
+            'user_id'     => User::inRandomOrder()->first()->id,
+            'state_id'    => $this->faker->randomElement([1, 2]),
+            'company_id'  => Company::inRandomOrder()->first()->id,
             'fechaInicio' => $this->faker->date,
-            'fechaFin' => Carbon::now()->addDays($this->faker->numberBetween(1, 30)),
+            'fechaFin'    => Carbon::now()->addDays($this->faker->numberBetween(1, 30)),//now(),//$this->faker->date,
         ];
     }
 }

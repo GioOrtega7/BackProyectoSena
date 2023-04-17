@@ -16,22 +16,21 @@ class TipoDocumentoController extends Controller
      */
     public function index(Request $request)
     {
+       
         $estado = $request->input('estado');
         $proceso = $request->input('proceso');
         $tipoDocumentos = TipoDocumento::with('estado', 'proceso');
-
+        
         if ($estado) {
             $tipoDocumentos->whereHas('estado', function ($q) use ($estado) {
                 return $q->select('id')->where('id', $estado)->orWhere('estado', $estado);
             });
         }
-
         if ($proceso) {
             $tipoDocumentos->whereHas('proceso', function ($q) use ($proceso) {
                 return $q->select('id')->where('id', $proceso)->orWhere('nombreProceso', $proceso);
             });
         }
-
         return response()->json($tipoDocumentos->get());
     }
 

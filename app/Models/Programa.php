@@ -5,26 +5,28 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TipoDocumento extends Model
+class Programa extends Model
 {
     use HasFactory;
 
     public static $snakeAttributes = false;
-    protected $table = "tipoDocumento";
+    protected $table = "programa";
     protected $fillable = [
-        "tituloDocumento",
-        "descripcion",
-        "idEstado",
-        "idProceso"
+    "nombrePrograma",
+    "codigoPrograma",
+    "descripcionPrograma",
+    "idTipoPrograma",
+    "idEstado"
     ];
-
     public $timestamps = false;
-    
-    public function proceso()
-    {
-        return $this->belongsTo(Proceso::class, 'idProceso');
-    }
 
+    //relacion uno a muchos tipo programa
+    public function tipoPrograma()
+    {
+        return $this->belongsTo(TipoProgramas::class, 'idTipoPrograma');
+    }
+    
+    //relacion uno a muchos estado
     public function estado()
     {
         return $this->belongsTo(Status::class, 'idEstado');
