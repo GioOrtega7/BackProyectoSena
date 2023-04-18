@@ -94,6 +94,10 @@ Route::resource('fases', FaseController::class);
 //ruta para actividades de proyecto
 Route::resource('actividad_proyecto', ActividadProyectoController::class);
 
+//rutas para ciudad y departamento
+Route::resource('departamentos', CountryController::class);
+Route::resource('ciudades', CityController::class);
+Route::get('ciudades/departamento/{id}',[CityController::class,'showByDepartamento']);
 
 //rutas sede -> revisar y optimizar
 Route::resource('sedes',SedeController::class);
