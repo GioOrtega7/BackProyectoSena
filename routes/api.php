@@ -7,6 +7,10 @@ use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\gestion_dia\DiaController;
+use App\Http\Controllers\gestion_dia_jornada\DiaJornadaController;
+use App\Http\Controllers\gestion_grupo\GrupoController;
+use App\Http\Controllers\gestion_jornada\JornadaController;
 use App\Http\Controllers\gestion_mediopago\MedioPagoController;
 use App\Http\Controllers\gestion_notificacion\NotificacionController;
 use App\Http\Controllers\gestion_proceso\ProcesoController;
@@ -69,3 +73,18 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
+
+
+//jornadas
+Route::resource('jornadas', JornadaController::class);
+//dia
+Route::resource('dias', DiaController::class);
+//traer diaJornada
+Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
+
+//grupos
+Route::resource('grupos', GrupoController::class);
+//buscador para el controlador grupos
+Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
+//tipo de grupos
+Route::resource('tipogrupos', TipoGrupoController::class);
