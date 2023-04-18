@@ -40,6 +40,12 @@ class RoleSeeder extends Seeder
             PermissionConst::GESTION_TIPO_TRANSACCION,
             PermissionConst::GESTION_TIPO_DOCUMENTOS,
 
+// permisao vanesas
+            PermissionConst::GESTION_COMPETENCIA,
+            PermissionConst::GESTION_ACTIVIDAD_APRENDIZAJE,
+            PermissionConst::GESTION_RESULTADO_APRENDIZAJE,
+
+
         ]);
 
         $rapidoTambo->syncPermissions([

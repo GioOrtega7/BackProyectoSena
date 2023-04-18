@@ -5,16 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Proceso extends Model
+class resultadoAprendizaje extends Model
 {
     use HasFactory;
     public static $snakeAttributes = false;
-    protected $table = "proceso";
+    protected $table = "resultadoAprendizaje";
     protected $fillable = [
-        "nombreProceso",
-        "descripcion"
+        "rap",
+        "codigoRap"
     ];
 
     public $timestamps = false;
-    
+    public function competencias()
+{
+    return $this->belongsToMany(Competencias::class);
+}
+
+
 }
