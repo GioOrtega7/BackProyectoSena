@@ -9,8 +9,10 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FaseController;
-use App\Http\Controllers\gestion_grupo\GrupoController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
+use App\Http\Controllers\gestion_dia\DiaController;
+use App\Http\Controllers\gestion_dia_jornada\DiaJornadaController;
+use App\Http\Controllers\gestion_grupo\GrupoController;
 use App\Http\Controllers\gestion_jornada\JornadaController;
 use App\Http\Controllers\gestion_mediopago\MedioPagoController;
 use App\Http\Controllers\gestion_notificacion\NotificacionController;
@@ -106,11 +108,17 @@ Route::get('infraestructuras/sede/{id}', [InfraestructuraController::class,'show
 Route::get('infraestructuras/area/{id}', [InfraestructuraController::class,'showByArea']);
 Route::get('infraestructuras/sede/{idSede}/area/{idArea}', [InfraestructuraController::class,'showBySedeArea']);
 
-Route::resource('grupos', GrupoController::class);
 
-Route::resource('tipogrupos', TipoGrupoController::class);
-
+//jornadas
 Route::resource('jornadas', JornadaController::class);
+//dia
+Route::resource('dias', DiaController::class);
+//traer diaJornada
+Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
 
-
-
+//grupos
+Route::resource('grupos', GrupoController::class);
+//buscador para el controlador grupos
+Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
+//tipo de grupos
+Route::resource('tipogrupos', TipoGrupoController::class);

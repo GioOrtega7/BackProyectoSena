@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Grupo;
+use App\Models\TipoGrupo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -37,6 +39,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
         $this->call(DiaSeeder::class);
+
+        TipoGrupo::factory(10)->create();
+        Grupo::factory(10)->create();
+
 
 
     }
