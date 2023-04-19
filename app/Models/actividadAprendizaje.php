@@ -16,7 +16,7 @@ class actividadAprendizaje extends Model
         "NombreAA",
         "codigoAA",
         "idEstado",
-        "rap"
+        "rap"   
     ];
 
     public $timestamps =false;

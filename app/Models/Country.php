@@ -9,5 +9,11 @@ class Country extends Model
 {
     use HasFactory;
 
-    protected $table = "departamento";
+    protected $table = 'departamento';
+
+    public function ciudades(){
+        return $this -> hasMany(
+            City::class,'idDepartamento'
+        );
+    }
 }

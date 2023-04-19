@@ -18,7 +18,7 @@ class actividadAprendizajeController extends Controller
         $estado = $request->input('estado');        
         $ActividadAprendizaje = $request->input('rap');
         $actividadAprendizaje = actividadAprendizaje::with('estado', 'rap');
-
+  
         if ($estado) {
             $actividadAprendizaje->whereHas('estado', function ($q) use ($estado) {
                 return $q->select('id')->where('id', $estado)->orWhere('estado', $estado);

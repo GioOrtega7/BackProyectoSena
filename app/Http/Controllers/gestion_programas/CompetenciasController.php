@@ -3,6 +3,7 @@
 
 namespace App\Http\Controllers\gestion_programas;
 use App\Http\Controllers\Controller;
+use App\Models\ActividadProyecto;
 use App\Models\Competencias;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,19 @@ class CompetenciasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $actividadProyecto= $request->input('actividadProyecto');
+        $AP = Competencias::with('actividadProyecto');
 
-       $data = Competencias::all();
-        return response()->json($data);
+
+        if($actividadProyecto){
+            $AP->whereHas('actividadProyecto',function($q) use ($actividadProyecto){
+                return $q->select('id')->where('id',$actividadProyecto)->orWhere('nombreActividadProyecto',$actividadProyecto);
+            });
+        };
+
+        return response()->json($AP->get());
     }
 
     /**

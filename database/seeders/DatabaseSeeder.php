@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Grupo;
+use App\Models\TipoGrupo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competencias;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $path = 'database/seeders/sql/countries.sql';
         DB::unprepared(file_get_contents($path));
         $path = 'database/seeders/sql/cities.sql';
@@ -32,6 +36,7 @@ class DatabaseSeeder extends Seeder
 
 
 
+      
         $this->call(CompanySeeder::class);
         $this->call(PermissionSeeder::class);
         $this->call(RoleSeeder::class);
@@ -41,6 +46,13 @@ class DatabaseSeeder extends Seeder
 
 // datos de prueba para competencias
         // Competencias::factory(3)->create();
+
+
+        $this->call(DiaSeeder::class);
+
+        TipoGrupo::factory(10)->create();
+        Grupo::factory(10)->create();
+
 
 
     }

@@ -18,6 +18,11 @@ class CreateCompetenciasTable extends Migration
             $table->id();
             $table->text ('nombreCompetencia');
             $table->text ('codigoCompetencia');
+
+            $table->foreign('idActividadProyecto')->references('id')->on('actividadProyecto');
+            $table->unsignedInteger('idActividadProyecto');
+
+
             $table->timestamps();
         });
     }
@@ -31,4 +36,5 @@ class CreateCompetenciasTable extends Migration
     {
         Schema::dropIfExists('competencias');
     }
+    
 }

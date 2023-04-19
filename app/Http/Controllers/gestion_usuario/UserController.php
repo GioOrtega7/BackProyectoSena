@@ -58,15 +58,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles', []));
         return $user;
     }
-    // public function update(Request $request, int $id)
-    // {
-    //     $data = $request->all();
-    //     $tipoTransaccion = TipoTransaccion::findOrFail($id);
-    //     $tipoTransaccion->fill($data);
-    //     $tipoTransaccion->save();
-
-    //     return response()->json($tipoTransaccion);
-    // }
+    
     // /**
     //  * Remove the specified resource from storage.
     //  *

@@ -18,8 +18,8 @@ class CreateCitiesTable extends Migration
             $table->string('codigo', 10)->unique();
             $table->string('descripcion', 50);
 
-            $table->unsignedInteger('iddepartamento');
-            $table->foreign('iddepartamento')->references('id')->on('departamento');
+            $table->unsignedInteger('idDepartamento');
+            $table->foreign('idDepartamento')->references('id')->on('departamento');
 
             $table->timestamps();
         });
