@@ -6,6 +6,7 @@ use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FaseController;
@@ -22,6 +23,8 @@ use App\Http\Controllers\gestion_tipo_documento\TipoDocumentoController;
 use App\Http\Controllers\gestion_tipopago\TipoPagoController;
 use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
+use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
+use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
@@ -31,6 +34,9 @@ use App\Http\Controllers\InfraestructuraController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+use App\Http\Controllers\VentasController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +88,16 @@ Route::get('lista_usuarios', [Gestion_usuarioUserController::class, 'getUsers'])
 Route::resource('usuarios', Gestion_usuarioUserController::class);
 
 Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']);
+
+
+// crear ruta para competencias 1 vanesa
+Route::resource('competencias',CompetenciasController::class);
+//rutas para resultado aprendizaje 2 vanesa
+Route::resource('resultadoAprendizaje',  resultadoAprendizajeController::class);
+//rutas para actividad aprendizaje 3 vanesa
+Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
+
+
 
 //ruta tipo_programas
 Route::resource('tipo_programas', TipoProgramasController::class);
