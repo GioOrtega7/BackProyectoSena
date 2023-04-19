@@ -79,7 +79,6 @@ class InfraestructuraController extends Controller
         $request -> validate([
             'nombreInfraestructura' => 'required',
             'capacidad' => 'required',
-            'descripcion' => 'required',
             'idArea' => 'required',
             'idSede' => 'required'
         ]);

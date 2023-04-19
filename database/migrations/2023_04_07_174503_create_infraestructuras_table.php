@@ -17,7 +17,7 @@ class CreateInfraestructurasTable extends Migration
             $table->increments('id');
             $table->string('nombreInfraestructura');
             $table->integer('capacidad');
-            $table->text('descripcion');
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
