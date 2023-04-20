@@ -42,18 +42,17 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
 
-
-
-// datos de prueba para competencias
-        // Competencias::factory(3)->create();
-
+        $path = 'database/seeders/sql/sedes.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/areas.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/infraestructuras.sql';
+        DB::unprepared(file_get_contents($path));
 
         $this->call(DiaSeeder::class);
 
         TipoGrupo::factory(10)->create();
         Grupo::factory(10)->create();
-
-
 
     }
 }
