@@ -21,7 +21,7 @@ class CreateGrupoTable extends Migration
             $table->date('fechaFinal');
             $table->text('observacion');
 
-            $table->foreignId('idTipoGrupo')->references('id')->on('tipogrupo');
+            $table->foreignId('idTipoGrupo')->references('id')->on('tipoGrupo');
 
             $table->timestamps();
         });

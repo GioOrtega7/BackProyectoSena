@@ -91,7 +91,7 @@ Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']
 
 
 // crear ruta para competencias 1 vanesa
-Route::resource('competencias',CompetenciasController::class);
+Route::resource('competencias', CompetenciasController::class);
 //rutas para resultado aprendizaje 2 vanesa
 Route::resource('resultadoAprendizaje',  resultadoAprendizajeController::class);
 //rutas para actividad aprendizaje 3 vanesa
@@ -100,9 +100,9 @@ Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
 
 
 //ruta tipo_programas
-Route::resource('tipo_programas', TipoProgramasController::class);
+Route::resource('tipo_programas',  TipoProgramasController::class);
 //ruta para programas
-Route::resource('programas', ProgramaController::class);
+Route::resource('programas',  ProgramaController::class);
 //ruta para proyecto formativo
 Route::resource('proyecto_formativo', ProyectoFormativoController::class);
 //ruta para fases

@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\controller; 
 use App\Models\Programa;
 use Illuminate\Http\Request;
 
-class ProgramaController extends Controller
-{
-    
+class ProgramaController extends Controller {
+
     public function index(Request $request)
     {
 
@@ -41,15 +39,15 @@ class ProgramaController extends Controller
         return response()->json($programa,201);
     }
 
-    
+
     public function show(int $id)
     {
         $programa = Programa::find($id);
-        
+
         return response()->json($programa,200);
     }
 
-    
+
     public function update(Request $request, int  $id)
     {
         $data = $request->all();
@@ -60,7 +58,7 @@ class ProgramaController extends Controller
         return response()->json($programa,203);
     }
 
-    
+
     public function destroy(int $id)
     {
         $programa = Programa::findOrFail($id);

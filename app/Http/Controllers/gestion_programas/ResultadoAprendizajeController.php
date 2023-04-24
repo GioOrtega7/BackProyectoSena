@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\gestion_programas;
+
 use App\Http\Controllers\Controller;
 use App\Models\resultadoAprendizaje;
 use Illuminate\Http\Request;
