@@ -63,7 +63,6 @@ class SedeController extends Controller
             'nombreSede' => 'required',
             'direccion' => 'required',
             'telefono' => 'required',
-            'descripcion' => 'required',
             'idCiudad' => 'required'
         ]);
 

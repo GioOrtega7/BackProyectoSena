@@ -49,6 +49,12 @@ class RoleSeeder extends Seeder
             
             
 
+// permisao vanesas
+            PermissionConst::GESTION_COMPETENCIA,
+            PermissionConst::GESTION_ACTIVIDAD_APRENDIZAJE,
+            PermissionConst::GESTION_RESULTADO_APRENDIZAJE,
+
+
 
 
             PermissionConst::GESTION_PAGO_NOMINA,

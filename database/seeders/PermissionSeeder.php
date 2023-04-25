@@ -15,6 +15,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
+
         $this->savePermission(PermissionConst::GESTION_ROLES, "Gestión de roles");
         $this->savePermission(PermissionConst::GESTION_ROL_PERMISOS, "Gestión permisos del rol");
         $this->savePermission(PermissionConst::GESTION_USUARIO, "Gestión de usuarios");
@@ -24,10 +25,17 @@ class PermissionSeeder extends Seeder
         $this->savePermission(PermissionConst::GESTION_MEDIO_PAGO, "Gestión medios de pago");
         $this->savePermission(PermissionConst::GESTION_TIPO_PAGO, "Gestión de tipos de pago");
         $this->savePermission(PermissionConst::GESTION_TIPO_TRANSACCION, "Gestión de tipos de transacciòn");
+
+// realizado por vanesa
+        $this->savePermission(PermissionConst::GESTION_COMPETENCIA, "Gestión de competencia");
+        $this->savePermission(PermissionConst::GESTION_ACTIVIDAD_APRENDIZAJE, "Gestión actividad aprendizaje");
+        $this->savePermission(PermissionConst::GESTION_RESULTADO_APRENDIZAJE, "Gestión resultado aprendizaje");
+
+
         $this->savePermission(PermissionConst::GESTION_SEDE, "Gestión de sedes");
         $this->savePermission(PermissionConst::GESTION_AREA, "Gestión de areas");
         $this->savePermission(PermissionConst::GESTION_INFRAESTRUCTURA, "Gestión de infraestructuras");
-        
+
         $this->savePermission(PermissionConst::GESTION_TIPO_PROGRAMAS, "Gestión de tipos de competencias");
         $this->savePermission(PermissionConst::GESTION_PROGRAMAS, "Gestión de tipos de programas");
         $this->savePermission(PermissionConst::GESTION_FASES, "Gestión de fases");
@@ -37,7 +45,7 @@ class PermissionSeeder extends Seeder
         $this->savePermission(PermissionConst::GESTION_PAGO_NOMINA, "Gestión de pagos de Nomina");
         $this->savePermission(PermissionConst::GESTION_GRUPO, "Gestion de grupos");// se crea permiso en archivo seeder
         $this->savePermission(PermissionConst::GESTION_TIPO_GRUPO, "Gestion de tipos de grupos");// se crea permiso en archivo seeder
-        $this->savePermission(PermissionConst::CALENDARIO1, "Calendario1");
+        $this->savePermission(PermissionConst::CALENDARIO, "Calendario");
     }
 
     private function savePermission($name, $description)

@@ -18,7 +18,7 @@ class CreateSedesTable extends Migration
             $table->string('nombreSede');
             $table->string('direccion');
             $table->string('telefono');
-            $table->text('descripcion');   
+            $table->text('descripcion') ->nullable();   
             $table->timestamps();
         });
     }
