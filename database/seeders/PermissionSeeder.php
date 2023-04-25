@@ -37,6 +37,7 @@ class PermissionSeeder extends Seeder
         $this->savePermission(PermissionConst::GESTION_PAGO_NOMINA, "Gestión de pagos de Nomina");
         $this->savePermission(PermissionConst::GESTION_GRUPO, "Gestion de grupos");// se crea permiso en archivo seeder
         $this->savePermission(PermissionConst::GESTION_TIPO_GRUPO, "Gestion de tipos de grupos");// se crea permiso en archivo seeder
+        $this->savePermission(PermissionConst::CALENDARIO1, "Calendario1");
     }
 
     private function savePermission($name, $description)

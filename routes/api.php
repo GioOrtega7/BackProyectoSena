@@ -126,3 +126,5 @@ Route::resource('grupos', GrupoController::class);
 Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
+
+Route::resource('calendario1',  App\Http\Controllers\Calendario1Controller::class);
