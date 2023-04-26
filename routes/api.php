@@ -30,7 +30,7 @@ use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
-
+use App\Http\Controllers\PersonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
@@ -143,3 +143,4 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
+Route::resource('peronas', PersonController::class);

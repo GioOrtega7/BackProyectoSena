@@ -14,7 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $data =Person::with('usuario') -> get();
+        return response() -> json($data);
     }
 
     /**
