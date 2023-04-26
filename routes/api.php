@@ -93,7 +93,7 @@ Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']
 // crear ruta para competencias 1 vanesa
 Route::resource('competencias', CompetenciasController::class);
 //rutas para resultado aprendizaje 2 vanesa
-Route::resource('resultadoAprendizaje',  resultadoAprendizajeController::class);
+Route::resource('resultadoAprendizaje', resultadoAprendizajeController::class);
 //rutas para actividad aprendizaje 3 vanesa
 Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
 
@@ -143,4 +143,3 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('calendario1',  App\Http\Controllers\Calendario1Controller::class);

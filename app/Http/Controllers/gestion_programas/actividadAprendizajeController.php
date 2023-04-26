@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\gestion_programas;
+
 use App\Http\Controllers\Controller;
 use App\Models\actividadAprendizaje;
 use Illuminate\Http\Request;
@@ -15,10 +16,10 @@ class actividadAprendizajeController extends Controller
      */
     public function index(Request $request)
     {
-        $estado = $request->input('estado');        
+        $estado = $request->input('estado');
         $ActividadAprendizaje = $request->input('rap');
         $actividadAprendizaje = actividadAprendizaje::with('estado', 'rap');
-  
+
         if ($estado) {
             $actividadAprendizaje->whereHas('estado', function ($q) use ($estado) {
                 return $q->select('id')->where('id', $estado)->orWhere('estado', $estado);
