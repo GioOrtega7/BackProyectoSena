@@ -31,12 +31,11 @@ use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\RegionalController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -113,20 +112,20 @@ Route::resource('actividad_proyecto', ActividadProyectoController::class);
 //rutas para ciudad y departamento
 Route::resource('departamentos', CountryController::class);
 Route::resource('ciudades', CityController::class);
-Route::get('ciudades/departamento/{id}',[CityController::class,'showByDepartamento']);
+Route::get('ciudades/departamento/{id}', [CityController::class, 'showByDepartamento']);
 
 //rutas sede -> revisar y optimizar
-Route::resource('sedes',SedeController::class);
-Route::get('sedes/ciudad/{id}', [SedeController::class,'showByCiudad']);
+Route::resource('sedes', SedeController::class);
+Route::get('sedes/ciudad/{id}', [SedeController::class, 'showByCiudad']);
 
 //ruta de areas
-Route::resource('areas',AreaController::class);
+Route::resource('areas', AreaController::class);
 
 //rutas de infraestructura -> revisar y optimizar (crear un grupo de rutas como en ciudades)
-Route::resource('infraestructuras',InfraestructuraController::class);
-Route::get('infraestructuras/sede/{id}', [InfraestructuraController::class,'showBySede']);
-Route::get('infraestructuras/area/{id}', [InfraestructuraController::class,'showByArea']);
-Route::get('infraestructuras/sede/{idSede}/area/{idArea}', [InfraestructuraController::class,'showBySedeArea']);
+Route::resource('infraestructuras', InfraestructuraController::class);
+Route::get('infraestructuras/sede/{id}', [InfraestructuraController::class, 'showBySede']);
+Route::get('infraestructuras/area/{id}', [InfraestructuraController::class, 'showByArea']);
+Route::get('infraestructuras/sede/{idSede}/area/{idArea}', [InfraestructuraController::class, 'showBySedeArea']);
 
 
 //jornadas
@@ -134,7 +133,7 @@ Route::resource('jornadas', JornadaController::class);
 //dia
 Route::resource('dias', DiaController::class);
 //traer diaJornada
-Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
+Route::get('diajornada/jornada/{id}', [DiaJornadaController::class, 'showByJornada']);
 
 //grupos
 Route::resource('grupos', GrupoController::class);
@@ -143,4 +142,7 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('peronas', PersonController::class);
+Route::resource('personas', PersonController::class);
+
+//regional
+Route::resource('regionales', RegionalController::class);
