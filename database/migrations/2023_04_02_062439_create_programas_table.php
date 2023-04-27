@@ -18,6 +18,7 @@ class CreateProgramasTable extends Migration
             $table->string('nombrePrograma');
             $table->string('codigoPrograma');
             $table->text('descripcionPrograma');
+            $table->string('ruta');
 
             $table->unsignedInteger('idTipoPrograma');
             $table->foreign('idTipoPrograma')->references('id')->on('tipoPrograma');
