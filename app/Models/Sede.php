@@ -16,6 +16,11 @@ class Sede extends Model
             City::class,'idCiudad'
         );
     }
+    public function centroFormacion(){
+        return $this -> belongsTo(
+            CentroFormacion::class,'idCentroFormacion'
+        );
+    }
     public function infraestructuras(){
         return $this -> hasMany(
             Infraestructura::class,'idSede'

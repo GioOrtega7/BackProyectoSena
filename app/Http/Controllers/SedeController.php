@@ -12,7 +12,7 @@ class SedeController extends Controller
     */
     public function index()
     {
-        $data = Sede::with(['ciudad','infraestructuras']) -> get();
+        $data = Sede::with(['ciudad','centroFormacion','infraestructuras']) -> get();
         return response() -> json($data);
     }
 
@@ -28,6 +28,7 @@ class SedeController extends Controller
         $post -> telefono = $request -> telefono;
         $post -> descripcion = $request -> descripcion;
         $post -> idCiudad = $request -> idCiudad;
+        $post -> idCentroFormacion = $request -> idCentroFormacion;
 
         $post -> save();
 
@@ -38,7 +39,7 @@ class SedeController extends Controller
      */
     public function show(int $id)
     {
-        $sede = Sede::with(['ciudad','infraestructuras']) -> find($id);
+        $sede = Sede::with(['ciudad','centroFormacion','infraestructuras']) -> find($id);
         return response() -> json($sede);
     }
 
@@ -46,7 +47,7 @@ class SedeController extends Controller
      * Muestra las sedes dependiendo de la ciudad
      */
     public function showByCiudad(int $id){
-        $sedes = Sede::with(['ciudad','infraestructuras'])
+        $sedes = Sede::with(['ciudad','centroFormacion','infraestructuras'])
             -> where('idCiudad',$id)
             -> get();
 
@@ -75,6 +76,7 @@ class SedeController extends Controller
         $registro->telefono = $request->telefono;
         $registro->descripcion = $request->descripcion;
         $registro->idCiudad = $request->idCiudad;
+        $registro->idCentroFormacion = $request -> idCentroFormacion;
 
         // Guardar los cambios en la base de datos
         $registro->save();
@@ -87,8 +89,8 @@ class SedeController extends Controller
      */
     public function destroy(int $id)
     {
-        $competencia = Sede::findOrFail($id);
-        $competencia->delete();
+        $sede = Sede::findOrFail($id);
+        $sede->delete();
 
     }
 }
