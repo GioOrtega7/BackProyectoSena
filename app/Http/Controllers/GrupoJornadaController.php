@@ -26,7 +26,10 @@ class GrupoJornadaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new GrupoJornada();
+        $post -> idGrupo = $request -> idGrupo;
+        $post -> idJornada = $request -> idJornada;
+        $post -> save();
     }
 
     /**
