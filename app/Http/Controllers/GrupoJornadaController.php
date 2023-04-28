@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Models\GrupoJornada;
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class GrupoJornadaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +14,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $data =Person::with('usuario') -> get();
+        $data = GrupoJornada::with(['jornada','grupo']) -> get();
         return response() -> json($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -42,21 +32,10 @@ class PersonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\GrupoJornada  $grupoJornada
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Person $person)
+    public function show(GrupoJornada $grupoJornada)
     {
         //
     }
@@ -65,10 +44,10 @@ class PersonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\GrupoJornada  $grupoJornada
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Person $person)
+    public function update(Request $request, GrupoJornada $grupoJornada)
     {
         //
     }
@@ -76,10 +55,10 @@ class PersonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\GrupoJornada  $grupoJornada
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Person $person)
+    public function destroy(GrupoJornada $grupoJornada)
     {
         //
     }

@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers\gestion_programas;
+
 use App\Http\Controllers\Controller;
 use App\Models\ActividadProyecto;
 use App\Models\Competencias;
@@ -58,7 +59,7 @@ class CompetenciasController extends Controller
         return response()->json($competencias);
     }
 
-    /** 
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -89,5 +90,5 @@ class CompetenciasController extends Controller
 
         return response()->json($competencias);
     }
-    
+
 }

@@ -13,7 +13,10 @@ class proyectoFormativo extends Model
     protected $fillable = [
     "nombre",
     "codigo",
-    "idPrograma"
+    "idPrograma",
+    "tiempoEstimado",
+    "numeroTotalRaps",
+    "idCentroFormacion"
     ];
 
     public $timestamps = false;

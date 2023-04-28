@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\gestion_programas;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\resultadoAprendizaje;
+use App\Models\regional;
 use Illuminate\Http\Request;
 
-class resultadoAprendizajeController extends Controller
+class RegionalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +15,14 @@ class resultadoAprendizajeController extends Controller
      */
     public function index(Request $request)
     {
-        $rap = $request->input('rap');
+        $nombreRegional = $request->input('nombreRegional');
 
-        $resultadoAp = resultadoAprendizaje ::query();
-        if ($rap) {
-            $resultadoAp->where('rap', $rap);
+        $regionales = Regional::query();
+        if ($nombreRegional) {
+            $regionales->where('nombreRegional', $nombreRegional);
         }
 
-
-        return response()->json($resultadoAp->get());
+        return response()->json($regionales->get());
     }
 
     /**
@@ -36,10 +34,10 @@ class resultadoAprendizajeController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $resultadoA = new resultadoAprendizaje($data);
-        $resultadoA->save();
+        $regional = new Regional($data);
+        $regional->save();
 
-        return response()->json($resultadoA, 201);
+        return response()->json($regional, 201);
     }
 
     /**
@@ -50,9 +48,8 @@ class resultadoAprendizajeController extends Controller
      */
     public function show(int $id)
     {
-        $resultadoA = resultadoAprendizaje::find($id);
-
-        return response()->json($resultadoA);
+        $regional = Regional::find($id);
+        return response()->json($regional);
     }
 
     /**
@@ -65,11 +62,11 @@ class resultadoAprendizajeController extends Controller
     public function update(Request $request, int $id)
     {
         $data = $request->all();
-        $resultadoA = resultadoAprendizaje::findOrFail($id);
-        $resultadoA->fill($data);
-        $resultadoA->save();
+        $regional = Regional::findOrFail($id);
+        $regional->fill($data);
+        $regional->save();
 
-        return response()->json($resultadoA);
+        return response()->json($regional);
     }
 
     /**
@@ -80,10 +77,9 @@ class resultadoAprendizajeController extends Controller
      */
     public function destroy(int $id)
     {
-        $resultadoA = resultadoAprendizaje::findOrFail($id);
-        $resultadoA->delete();
-        return response()->json([
-            'eliminado'
-        ]);
+        $regional = Regional::findOrFail($id);
+        $regional->delete();
+
+        return response()->json([], 204);
     }
 }

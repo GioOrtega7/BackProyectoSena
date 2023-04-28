@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Models\calendario1;
 use Illuminate\Http\Request;
 
-class PersonController extends Controller
+class Calendario1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,17 +13,6 @@ class PersonController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $data =Person::with('usuario') -> get();
-        return response() -> json($data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
     {
         //
     }
@@ -42,21 +31,10 @@ class PersonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\calendario1  $calendario1
      * @return \Illuminate\Http\Response
      */
-    public function show(Person $person)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Person  $person
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Person $person)
+    public function show(calendario1 $calendario1)
     {
         //
     }
@@ -65,10 +43,10 @@ class PersonController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\calendario1  $calendario1
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Person $person)
+    public function update(Request $request, calendario1 $calendario1)
     {
         //
     }
@@ -76,10 +54,10 @@ class PersonController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Person  $person
+     * @param  \App\Models\calendario1  $calendario1
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Person $person)
+    public function destroy(calendario1 $calendario1)
     {
         //
     }

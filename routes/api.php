@@ -9,6 +9,7 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EstadoGrupoController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_dia\DiaController;
@@ -25,18 +26,23 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
+use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
-
+use App\Http\Controllers\NivelFormacionController;
+use App\Http\Controllers\PersonController;
+use App\Http\Controllers\TipoFormacionController;
+use App\Http\Controllers\TipoOfertaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
-
-
+use App\Models\EstadoGrupo;
+use App\Models\NivelFormacion;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,18 +97,18 @@ Route::put('asignar_roles', [Gestion_usuarioUserController::class, 'asignation']
 
 
 // crear ruta para competencias 1 vanesa
-Route::resource('competencias',CompetenciasController::class);
+Route::resource('competencias', CompetenciasController::class);
 //rutas para resultado aprendizaje 2 vanesa
-Route::resource('resultadoAprendizaje',  resultadoAprendizajeController::class);
+Route::resource('resultadoAprendizaje', resultadoAprendizajeController::class);
 //rutas para actividad aprendizaje 3 vanesa
 Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
 
 
 
 //ruta tipo_programas
-Route::resource('tipo_programas', TipoProgramasController::class);
+Route::resource('tipo_programas',  TipoProgramasController::class);
 //ruta para programas
-Route::resource('programas', ProgramaController::class);
+Route::resource('programas',  ProgramaController::class);
 //ruta para proyecto formativo
 Route::resource('proyecto_formativo', ProyectoFormativoController::class);
 //ruta para fases
@@ -113,20 +119,20 @@ Route::resource('actividad_proyecto', ActividadProyectoController::class);
 //rutas para ciudad y departamento
 Route::resource('departamentos', CountryController::class);
 Route::resource('ciudades', CityController::class);
-Route::get('ciudades/departamento/{id}',[CityController::class,'showByDepartamento']);
+Route::get('ciudades/departamento/{id}', [CityController::class, 'showByDepartamento']);
 
 //rutas sede -> revisar y optimizar
-Route::resource('sedes',SedeController::class);
-Route::get('sedes/ciudad/{id}', [SedeController::class,'showByCiudad']);
+Route::resource('sedes', SedeController::class);
+Route::get('sedes/ciudad/{id}', [SedeController::class, 'showByCiudad']);
 
 //ruta de areas
-Route::resource('areas',AreaController::class);
+Route::resource('areas', AreaController::class);
 
 //rutas de infraestructura -> revisar y optimizar (crear un grupo de rutas como en ciudades)
-Route::resource('infraestructuras',InfraestructuraController::class);
-Route::get('infraestructuras/sede/{id}', [InfraestructuraController::class,'showBySede']);
-Route::get('infraestructuras/area/{id}', [InfraestructuraController::class,'showByArea']);
-Route::get('infraestructuras/sede/{idSede}/area/{idArea}', [InfraestructuraController::class,'showBySedeArea']);
+Route::resource('infraestructuras', InfraestructuraController::class);
+Route::get('infraestructuras/sede/{id}', [InfraestructuraController::class, 'showBySede']);
+Route::get('infraestructuras/area/{id}', [InfraestructuraController::class, 'showByArea']);
+Route::get('infraestructuras/sede/{idSede}/area/{idArea}', [InfraestructuraController::class, 'showBySedeArea']);
 
 
 //jornadas
@@ -134,7 +140,7 @@ Route::resource('jornadas', JornadaController::class);
 //dia
 Route::resource('dias', DiaController::class);
 //traer diaJornada
-Route::get('diajornada/jornada/{id}', [DiaJornadaController::class,'showByJornada']);
+Route::get('diajornada/jornada/{id}', [DiaJornadaController::class, 'showByJornada']);
 
 //grupos
 Route::resource('grupos', GrupoController::class);
@@ -142,3 +148,19 @@ Route::resource('grupos', GrupoController::class);
 Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
+
+Route::resource('gruposjornada', GrupoJornadaController::class);
+// Route::resource('lideres', User::class);
+Route::resource('niveles_formacion', NivelFormacionController::class);
+
+Route::resource('tipo_formaciones', TipoFormacionController::class);
+
+Route::resource('estado_grupos', EstadoGrupoController::class);
+
+Route::resource('tipo_ofertas', TipoOfertaController::class);
+
+
+Route::resource('personas', PersonController::class);
+
+//regional
+Route::resource('regionales', RegionalController::class);

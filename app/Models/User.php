@@ -57,4 +57,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Person::class, 'idpersona');
     }
+
+    public function grupoLider()
+    {
+        return $this->hasOne(Grupo::class, 'idLider', 'id');
+    }
+    
 }
