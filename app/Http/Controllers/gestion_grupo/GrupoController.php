@@ -17,16 +17,72 @@ class GrupoController extends Controller
    */
   public function index(Request $request)
   {
-    $tipoGrupo = $request->input('tipogrupo');
-    $grupo = Grupo::with('tipogrupo');
+
+    $tipoGrupo       = $request->input('tipoGrupo');
+    $lider           = $request->input('usuario');
+    $programa        = $request->input('programa');
+    $infraestructura = $request->input('infraestructura');
+    $nivelFormacion  = $request->input('nivelFormacion');
+    $tipoFormacion   = $request->input('tipoFormacion');
+    $estadoGrupo     = $request->input('estadoGrupo');
+    $tipoOferta      = $request->input('tipoOferta');
+
+
+
+    $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estadoGrupo', 'tipoOferta');
+
+    
 
     if ($tipoGrupo) {
-      $grupo->whereHas('grupos', function ($q) use ($tipoGrupo) {
+      $grupos->whereHas('tipoGrupo', function ($q) use ($tipoGrupo) {
         return $q->select('id')->where('id', $tipoGrupo)->orWhere('nombreTipoGrupo', $tipoGrupo);
       });
     }
 
-    return response()->json($grupo->get());
+    if ($lider) {
+      $grupos->whereHas('usuario', function ($q) use ($lider) {
+        return $q->select('id')->where('id', $lider)->orWhere('nombre1', $lider);
+      });
+    }
+
+    if ($programa) {
+      $grupos->whereHas('programa', function ($q) use ($programa) {
+        return $q->select('id')->where('id', $programa)->orWhere('nombrePrograma', $programa);
+      });
+    }
+
+    if ($infraestructura) {
+      $grupos->whereHas('infraestructura', function ($q) use ($infraestructura) {
+        return $q->select('id')->where('id', $infraestructura)->orWhere('nombreInfraestructura', $infraestructura);
+      });
+    }
+
+    if ($nivelFormacion) {
+      $grupos->whereHas('nivelFormacion', function ($q) use ($nivelFormacion) {
+        return $q->select('id')->where('id', $nivelFormacion)->orWhere('nivel', $nivelFormacion);
+      });
+    }
+
+    if ($tipoFormacion) {
+      $grupos->whereHas('tipoFormacion', function ($q) use ($tipoFormacion) {
+        return $q->select('id')->where('id', $tipoFormacion)->orWhere('nombreTipoFormacion', $tipoFormacion);
+      });
+    }
+
+    if ($estadoGrupo) {
+      $grupos->whereHas('estadoGrupo', function ($q) use ($estadoGrupo) {
+        return $q->select('id')->where('id', $estadoGrupo)->orWhere('nombreEstado', $estadoGrupo);
+      });
+    }
+
+    if ($tipoOferta) {
+      $grupos->whereHas('tipoOferta', function ($q) use ($tipoOferta) {
+        return $q->select('id')->where('id', $tipoOferta)->orWhere('nombreOferta', $tipoOferta);
+      });
+    }
+
+    return response()->json($grupos->get());
+    
   }
 
   /**

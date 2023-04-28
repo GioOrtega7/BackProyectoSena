@@ -60,6 +60,13 @@ class RoleSeeder extends Seeder
             PermissionConst::GESTION_PAGO_NOMINA,
             PermissionConst::GESTION_GRUPO,
             PermissionConst::GESTION_TIPO_GRUPO,
+
+            PermissionConst::GESTION_AREA,
+            PermissionConst::GESTION_SEDE,
+            PermissionConst::GESTION_INFRAESTRUCTURA,
+
+            PermissionConst::GESTION_JORNADA,
+            PermissionConst::CALENDARIO
            
             
         ]);
@@ -69,6 +76,8 @@ class RoleSeeder extends Seeder
             PermissionConst::GESTION_USUARIO,
             PermissionConst::GESTION_GRUPO,
             PermissionConst::GESTION_TIPO_GRUPO,
+            
+
 
         ]);
 

@@ -14,9 +14,12 @@ class CreateProyectoFormativosTable extends Migration
     public function up()
     {
         Schema::create('proyectoFormativo', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('nombre');
             $table->string('codigo');
+            $table->integer('tiempoEstimado');
+            $table->integer('numeroTotalRaps');
+            $table->integer('idCentroFormacion');
 
             $table->unsignedInteger('idPrograma');
             $table->foreign('idPrograma')->references('id')->on('programa');

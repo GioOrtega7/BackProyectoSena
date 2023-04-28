@@ -16,7 +16,12 @@ class Programa extends Model
     "codigoPrograma",
     "descripcionPrograma",
     "idTipoPrograma",
-    "idEstado"
+    "idEstado",
+    "totalHoras",
+    "etapaLectiva",
+    "etapaProductiva",
+    "creditosLectiva",
+    "creditosProductiva"
     ];
     public $timestamps = false;
 

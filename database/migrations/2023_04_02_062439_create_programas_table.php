@@ -18,6 +18,11 @@ class CreateProgramasTable extends Migration
             $table->string('nombrePrograma');
             $table->string('codigoPrograma');
             $table->text('descripcionPrograma');
+            $table->integer('totalHoras');
+            $table->integer('etapaLectiva');
+            $table->integer('etapaProductiva');
+            $table->integer('creditosLectiva');
+            $table->integer('creditosProductiva');
 
             $table->unsignedInteger('idTipoPrograma');
             $table->foreign('idTipoPrograma')->references('id')->on('tipoPrograma');

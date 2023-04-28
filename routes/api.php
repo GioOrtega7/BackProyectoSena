@@ -10,6 +10,7 @@ use App\Http\Controllers\CentroFormacionController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EstadoGrupoController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_dia\DiaController;
@@ -26,17 +27,24 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
+use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
+use App\Http\Controllers\NivelFormacionController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\RegionalController;
+use App\Http\Controllers\TipoFormacionController;
+use App\Http\Controllers\TipoOfertaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
+use App\Models\EstadoGrupo;
+use App\Models\NivelFormacion;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,10 +150,6 @@ Route::resource('grupos', GrupoController::class);
 Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
-
-Route::resource('peronas', PersonController::class);
-//centro de formacion
-Route::resource('centroFormacion', CentroFormacionController::class);
 
 Route::resource('personas', PersonController::class);
 

@@ -13,8 +13,13 @@ class TipoGrupoFactory extends Factory
      */
     public function definition()
     {
+
+        $tipoGrupos = ['FICHA', 'ESPECIAL', 'EVENTO'];
+        shuffle($tipoGrupos); // Reorganizar aleatoriamente la lista de niveles
+        $tipoGruposAleatorio = array_pop($tipoGrupos); // Seleccionar el último elemento de la lista reorganizada
+
         return [
-            'nombreTipoGrupo'  => $this->faker->randomElement(['FICHA 23123', 'FABRICA', 'LABORATORIO 1', 'LABORATORIO 2']),
+            'nombreTipoGrupo' => $tipoGruposAleatorio,
         ];
     }
 }
