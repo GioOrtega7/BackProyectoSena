@@ -9,6 +9,7 @@ use App\Http\Controllers\auth\UserController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\EstadoGrupoController;
 use App\Http\Controllers\FaseController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_dia\DiaController;
@@ -30,13 +31,17 @@ use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
+use App\Http\Controllers\NivelFormacionController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\TipoFormacionController;
+use App\Http\Controllers\TipoOfertaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
-
-
+use App\Models\EstadoGrupo;
+use App\Models\NivelFormacion;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,4 +148,14 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('peronas', PersonController::class);
+// Route::resource('lideres', User::class);
+Route::resource('niveles_formacion', NivelFormacionController::class);
+
+Route::resource('tipo_formaciones', TipoFormacionController::class);
+
+Route::resource('estado_grupos', EstadoGrupoController::class);
+
+Route::resource('tipo_ofertas', TipoOfertaController::class);
+
+
+Route::resource('personas', PersonController::class);

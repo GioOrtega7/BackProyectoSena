@@ -7,7 +7,12 @@ use App\Models\TipoGrupo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competencias;
-
+use App\Models\EstadoGrupo;
+use App\Models\NivelFormacion;
+use App\Models\Programa;
+use App\Models\TipoFormacion;
+use App\Models\TipoOferta;
+use App\Models\TipoProgramas;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,7 +40,8 @@ class DatabaseSeeder extends Seeder
         DB::unprepared(file_get_contents($path));
 
 
-
+        TipoProgramas::factory(10)->create();
+        Programa::factory(10)->create();
       
         $this->call(CompanySeeder::class);
         $this->call(PermissionSeeder::class);
@@ -52,6 +58,10 @@ class DatabaseSeeder extends Seeder
         $this->call(DiaSeeder::class);
 
         TipoGrupo::factory(10)->create();
+        EstadoGrupo::factory(10)->create();
+        NivelFormacion::factory(10)->create();
+        TipoFormacion::factory(10)->create();
+        TipoOferta::factory(10)->create();
         Grupo::factory(10)->create();
 
     }
