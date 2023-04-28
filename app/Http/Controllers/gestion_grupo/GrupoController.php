@@ -29,8 +29,8 @@ class GrupoController extends Controller
 
 
 
-        $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estado', 'tipoOferta');
-    
+        $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estadoGrupo', 'tipoOferta');
+
 
 
         if ($tipoGrupo) {
