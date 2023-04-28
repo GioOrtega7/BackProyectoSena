@@ -16,7 +16,7 @@ class CentroFormacionController extends Controller
 
 
         if($regional){
-            $AP->whereHas('fase',function($q) use ($regional){
+            $AP->whereHas('regional',function($q) use ($regional){
                 return $q->select('id')->where('id',$regional)->orWhere('nombreRegional',$regional);
             });
         };

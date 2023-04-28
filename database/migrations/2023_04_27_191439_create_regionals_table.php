@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCentroFormacionsTable extends Migration
+class CreateRegionalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateCentroFormacionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('centroFormacion', function (Blueprint $table) {
+        Schema::create('regional', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombreCentro');
-
-            $table->unsignedInteger('idRegional');
-            $table->foreign('idRegional')->references('id')->on('regional');
-
+            $table->string('nombreRegional');
+            $table->text('descripcion');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateCentroFormacionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('centroFormacion');
+        Schema::dropIfExists('regionals');
     }
 }
