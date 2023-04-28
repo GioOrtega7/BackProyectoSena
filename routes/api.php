@@ -25,6 +25,7 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
+use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
@@ -34,9 +35,6 @@ use App\Http\Controllers\PersonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
-use App\Http\Controllers\VentasController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -143,4 +141,5 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('peronas', PersonController::class);
+Route::resource('personas', PersonController::class);
+Route::resource('gruposjornada', GrupoJornadaController::class);
