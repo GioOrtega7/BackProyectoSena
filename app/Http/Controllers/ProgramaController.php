@@ -32,39 +32,16 @@ class ProgramaController extends Controller
 
         return response()->json($programas->get());
     }
-    public function guardarDoc(Request $request){
-        if ($request->hasFile('rutaDoc')) {
-            $ruta = $request->file('rutaDoc')->store('public/programa');
-            return Storage::url($ruta);
-        }
-        return '';
-    }
 
-
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $data = $request->all();
-        
         $programa = new Programa($data);
-        
-        if ($request->has('ruta')) {
-            $archivoBase64 = $request->input('ruta');
-            $archivoBinario = base64_decode($archivoBase64);
-            $rutaArchivo = 'public/ArchivosPrograma/Doc_' . date('y-m-d-H-i-s') . '.pdf'; // o el formato que sea
-            Storage::put($rutaArchivo, $archivoBinario);
-            $programa->ruta = Storage::url($rutaArchivo);
-        }
-        
         $programa->save();
-    
-        return response()->json($programa, 201);
+
+        return response()->json($programa,201);
     }
 
-
-    public function mostrarArchivo()
-{
-    $archivo = storage_path('public/ArchivosPrograma/Diccionario.pdf');
-    return response()->file($archivo);
-}
 
     public function show(int $id)
     {
