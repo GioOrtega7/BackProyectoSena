@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsignacionJornadaGruposTable extends Migration
+class CreateGrupoJornadasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,11 @@ class CreateAsignacionJornadaGruposTable extends Migration
     public function up()
     {
         Schema::create('asignacionJornadaGrupo', function (Blueprint $table) {
-            $table->id();
-            //Van foraneas de idGrupo e idJornada
+            $table->increments('id');
+            $table->unsignedInteger('idGrupo');
+            $table->foreign('idGrupo')->references('id')->on('grupo')->onDelete('cascade');
+            $table->unsignedBigInteger('idJornada');
+            $table->foreign('idJornada')->references('id')->on('jornada')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateAsignacionJornadaGruposTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asignacion_jornada_grupos');
+        Schema::dropIfExists('grupo_jornadas');
     }
 }

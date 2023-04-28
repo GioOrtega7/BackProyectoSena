@@ -26,6 +26,7 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
+use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
@@ -149,6 +150,7 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
+Route::resource('gruposjornada', GrupoJornadaController::class);
 // Route::resource('lideres', User::class);
 Route::resource('niveles_formacion', NivelFormacionController::class);
 

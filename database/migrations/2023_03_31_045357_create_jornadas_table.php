@@ -9,7 +9,7 @@ class CreateJornadasTable extends Migration
     public function up()
     {
         Schema::create('jornada', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('nombreJornada');
             $table->text('descripcion');
             $table->time('horaInicial');
