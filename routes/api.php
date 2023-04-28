@@ -6,6 +6,7 @@ use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\CentroFormacionController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
@@ -144,3 +145,5 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 Route::resource('tipogrupos', TipoGrupoController::class);
 
 Route::resource('peronas', PersonController::class);
+//centro de formacion
+Route::resource('centro_formacion', CentroFormacionController::class);
