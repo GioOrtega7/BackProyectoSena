@@ -42,9 +42,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
-use App\Models\EstadoGrupo;
-use App\Models\NivelFormacion;
-use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -150,6 +148,16 @@ Route::resource('grupos', GrupoController::class);
 Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
+
+Route::resource('tipogrupos', TipoGrupoController::class);
+
+Route::resource('niveles_formacion', NivelFormacionController::class);
+
+Route::resource('tipo_formaciones', TipoFormacionController::class);
+
+Route::resource('estado_grupos', EstadoGrupoController::class);
+
+Route::resource('tipo_ofertas', TipoOfertaController::class);
 
 Route::resource('personas', PersonController::class);
 
