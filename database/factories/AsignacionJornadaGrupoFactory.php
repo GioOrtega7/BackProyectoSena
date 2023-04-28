@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class TipoGrupoFactory extends Factory
+class AsignacionJornadaGrupoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,7 +14,7 @@ class TipoGrupoFactory extends Factory
     public function definition()
     {
         return [
-            'nombreTipoGrupo'  => $this->faker->randomElement(['FICHA', 'ESPECIAL', 'EVENTO']),
+            //
         ];
     }
 }
