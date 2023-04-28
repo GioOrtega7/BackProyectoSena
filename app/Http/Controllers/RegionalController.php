@@ -17,7 +17,7 @@ class RegionalController extends Controller
     {
         $nombreRegional = $request->input('nombreRegional');
 
-        $regionales = Regional::query();
+        $regionales = regional::query();
         if ($nombreRegional) {
             $regionales->where('nombreRegional', $nombreRegional);
         }
@@ -34,7 +34,7 @@ class RegionalController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $regional = new Regional($data);
+        $regional = new regional($data);
         $regional->save();
 
         return response()->json($regional, 201);
@@ -48,7 +48,7 @@ class RegionalController extends Controller
      */
     public function show(int $id)
     {
-        $regional = Regional::find($id);
+        $regional = regional::find($id);
         return response()->json($regional);
     }
 
@@ -62,7 +62,7 @@ class RegionalController extends Controller
     public function update(Request $request, int $id)
     {
         $data = $request->all();
-        $regional = Regional::findOrFail($id);
+        $regional = regional::findOrFail($id);
         $regional->fill($data);
         $regional->save();
 
@@ -77,7 +77,7 @@ class RegionalController extends Controller
      */
     public function destroy(int $id)
     {
-        $regional = Regional::findOrFail($id);
+        $regional = regional::findOrFail($id);
         $regional->delete();
 
         return response()->json([], 204);

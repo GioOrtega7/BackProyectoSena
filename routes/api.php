@@ -33,6 +33,7 @@ use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
 use App\Http\Controllers\NivelFormacionController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\RegionalController;
 use App\Http\Controllers\TipoFormacionController;
 use App\Http\Controllers\TipoOfertaController;
 use Illuminate\Http\Request;
