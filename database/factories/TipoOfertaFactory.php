@@ -13,8 +13,13 @@ class TipoOfertaFactory extends Factory
      */
     public function definition()
     {
+
+        $tipoOfertas = ['CERRADA', 'ABIERTA'];
+        shuffle($tipoOfertas); // Reorganizar aleatoriamente la lista de niveles
+        $tipoOfertasAleatorio = array_pop($tipoOfertas); // Seleccionar el último elemento de la lista reorganizada
+
         return [
-            'nombreOferta' => $this->faker->randomElement(['ABIERTA', 'CERRADA']),
+            'nombreOferta' => $tipoOfertasAleatorio,
         ];
     }
 }

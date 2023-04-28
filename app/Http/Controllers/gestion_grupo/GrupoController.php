@@ -18,53 +18,53 @@ class GrupoController extends Controller
   public function index(Request $request)
   {
 
-    $tipoGrupo       = $request->input('tipogrupo');
-    $lider           = $request->input('idpersona');
-    $programa        = $request->input('nombrePrograma');
-    $infraestructura = $request->input('nombreInfraestructura');
-    $nivelFormacion  = $request->input('nivel');
-    $tipoFormacion   = $request->input('nombreTipoFormacion');
-    $estadoGrupo     = $request->input('nombreEstado');
-    $tipoOferta      = $request->input('nombreOferta');
+    $tipoGrupo       = $request->input('tipoGrupo');
+    $lider           = $request->input('usuario');
+    $programa        = $request->input('programa');
+    $infraestructura = $request->input('infraestructura');
+    $nivelFormacion  = $request->input('nivelFormacion');
+    $tipoFormacion   = $request->input('tipoFormacion');
+    $estadoGrupo     = $request->input('estadoGrupo');
+    $tipoOferta      = $request->input('tipoOferta');
 
 
 
-    $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estado', 'tipoOferta');
+    $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estadoGrupo', 'tipoOferta');
 
     
 
     if ($tipoGrupo) {
-      $grupos->whereHas('grupos', function ($q) use ($tipoGrupo) {
+      $grupos->whereHas('tipoGrupo', function ($q) use ($tipoGrupo) {
         return $q->select('id')->where('id', $tipoGrupo)->orWhere('nombreTipoGrupo', $tipoGrupo);
       });
     }
 
     if ($lider) {
-      $grupos->whereHas('idpersona', function ($q) use ($lider) {
-        return $q->select('id')->where('id', $lider)->orWhere('contrasena', $lider);
+      $grupos->whereHas('usuario', function ($q) use ($lider) {
+        return $q->select('id')->where('id', $lider)->orWhere('nombre1', $lider);
       });
     }
 
     if ($programa) {
-      $grupos->whereHas('nombrePrograma', function ($q) use ($programa) {
+      $grupos->whereHas('programa', function ($q) use ($programa) {
         return $q->select('id')->where('id', $programa)->orWhere('nombrePrograma', $programa);
       });
     }
 
     if ($infraestructura) {
-      $grupos->whereHas('nombreInfraestructura', function ($q) use ($infraestructura) {
+      $grupos->whereHas('infraestructura', function ($q) use ($infraestructura) {
         return $q->select('id')->where('id', $infraestructura)->orWhere('nombreInfraestructura', $infraestructura);
       });
     }
 
     if ($nivelFormacion) {
-      $grupos->whereHas('nivel', function ($q) use ($nivelFormacion) {
+      $grupos->whereHas('nivelFormacion', function ($q) use ($nivelFormacion) {
         return $q->select('id')->where('id', $nivelFormacion)->orWhere('nivel', $nivelFormacion);
       });
     }
 
     if ($tipoFormacion) {
-      $grupos->whereHas('nombreTipoFormacion', function ($q) use ($tipoFormacion) {
+      $grupos->whereHas('tipoFormacion', function ($q) use ($tipoFormacion) {
         return $q->select('id')->where('id', $tipoFormacion)->orWhere('nombreTipoFormacion', $tipoFormacion);
       });
     }
@@ -76,7 +76,7 @@ class GrupoController extends Controller
     }
 
     if ($tipoOferta) {
-      $grupos->whereHas('nombreOferta', function ($q) use ($tipoOferta) {
+      $grupos->whereHas('tipoOferta', function ($q) use ($tipoOferta) {
         return $q->select('id')->where('id', $tipoOferta)->orWhere('nombreOferta', $tipoOferta);
       });
     }

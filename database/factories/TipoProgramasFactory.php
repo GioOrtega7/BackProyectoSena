@@ -14,8 +14,8 @@ class TipoProgramasFactory extends Factory
     public function definition()
     {
         return [
-            'nombreTipoPrograma' => $this->faker->randomElement(['tipo de programa prueba 1', 'tipo de programa prueba 2']),
-            'descripcion'        => $this->faker->randomElement(['descripcion de tipo programa 1', 'descripcion de tipo programa 2']),
+            'nombreTipoPrograma' => $this->faker->randomElement(['TIPO DE PROGRAMA 1', 'TIPO DE PROGRAMA 2']),
+            'descripcion'        => $this->faker->randomElement(['DESCRIPCION 1', 'DESCRIPCION 2']),
         ];
     }
 }

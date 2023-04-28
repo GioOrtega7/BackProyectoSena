@@ -57,11 +57,16 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DiaSeeder::class);
 
-        TipoGrupo::factory(10)->create();
-        EstadoGrupo::factory(10)->create();
-        NivelFormacion::factory(10)->create();
-        TipoFormacion::factory(10)->create();
-        TipoOferta::factory(10)->create();
+        $path = 'database/seeders/sql/tipo_grupo.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/estado_grupo.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/nivel_formacion.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/tipo_formacion.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/tipo_oferta.sql';
+        DB::unprepared(file_get_contents($path));
         Grupo::factory(10)->create();
 
     }

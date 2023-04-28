@@ -44,7 +44,7 @@ class Grupo extends Model
     }
 
     //Relacion uno a muchos Inversa(EstadoGrupo->Grupo)
-    public function estado()
+    public function estadoGrupo()
     {
         return $this->belongsTo(EstadoGrupo::class, 'idEstado');
     }

@@ -23,7 +23,7 @@ class CreateGrupoTable extends Migration
 
             $table->foreignId('idTipoGrupo')->references('id')->on('tipoGrupo');
 
-            $table->unsignedInteger('idLider');
+            $table->unsignedInteger('idLider')->nullable();
             $table->foreign('idLider')->references('id')->on('usuario');
 
             $table->unsignedInteger('idPrograma');

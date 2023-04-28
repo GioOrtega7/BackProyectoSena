@@ -13,4 +13,9 @@ class EstadoGrupo extends Model
 
     protected $guarded = [];
 
+    //Relacion uno a muchos (Grupo)
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class, 'idEstado');
+    }
 }
