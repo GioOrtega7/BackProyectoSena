@@ -159,3 +159,6 @@ Route::resource('tipo_ofertas', TipoOfertaController::class);
 
 
 Route::resource('personas', PersonController::class);
+
+//regional
+Route::resource('regionales', RegionalController::class);
