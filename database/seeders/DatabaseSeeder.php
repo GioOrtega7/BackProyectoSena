@@ -48,6 +48,10 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
 
+        $path = 'database/seeders/sql/regionales.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/centroFormacion.sql';
+        DB::unprepared(file_get_contents($path));
         $path = 'database/seeders/sql/sedes.sql';
         DB::unprepared(file_get_contents($path));
         $path = 'database/seeders/sql/areas.sql';

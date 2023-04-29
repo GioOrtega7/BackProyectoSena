@@ -149,7 +149,7 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('tipogrupos', TipoGrupoController::class);
+Route::resource('gruposjornada', GrupoJornadaController::class);
 
 Route::resource('niveles_formacion', NivelFormacionController::class);
 
