@@ -165,3 +165,5 @@ Route::resource('personas', PersonController::class);
 Route::resource('regionales', RegionalController::class);
 
 Route::resource('centroFormacion', CentroFormacionController::class);
+
+Route::resource('gruposjornada', GrupoJornadaController::class);
