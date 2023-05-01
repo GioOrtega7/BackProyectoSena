@@ -167,4 +167,4 @@ Route::resource('regionales', RegionalController::class);
 
 Route::resource('centroFormacion', CentroFormacionController::class);
 
-Route::resource('gruposjornada', GrupoJornadaController::class);
+Route::resource('gruposjornada',AsignacionJornadaGrupoController::class);
