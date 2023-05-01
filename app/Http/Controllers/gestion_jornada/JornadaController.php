@@ -28,6 +28,7 @@ class JornadaController extends Controller
                 $diaJornada->save();
             }
         }
+
     }
 
     public function update(Request $request, int $id)

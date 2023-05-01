@@ -169,15 +169,37 @@ class GrupoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request, int $id)
-    {
-        $data = $request->all();
-        $grupo = Grupo::findOrFail($id);
-        $grupo->fill($data);
-        $grupo->save();
-
-        return response()->json($grupo);
-    }
+     public function update(Request $request, $id)
+     {
+         $data = $request->all();
+         $grupo = Grupo::findOrFail($id);
+         $grupo->update([
+             'nombre' => $data['nombre'],
+             'fechaInicial' => $data['fechaInicial'],
+             'fechaFinal' => $data['fechaFinal'],
+             'observacion' => $data['observacion'],
+             'idTipoGrupo' => $data['idTipoGrupo'],
+             'idLider' => $data['idLider'],
+             'idPrograma' => $data['idPrograma'],
+             'idInfraestructura' => $data['idInfraestructura'],
+             'idNivel' => $data['idNivel'],
+             'idTipoFormacion' => $data['idTipoFormacion'],
+             'idEstado' => $data['idEstado'],
+             'idTipoOferta' => $data['idTipoOferta'],
+         ]);
+     
+         // Eliminar todas las asignaciones de jornada previas
+         AsignacionJornadaGrupo::where('idGrupo', $id)->delete();
+     
+         foreach ($data['grupos_jornada'] as $grupoJornada) {
+            $info = ['idGrupo' => $grupo->id, 'idJornada' => $grupoJornada['idJornada']];
+             $GrupoJornada = new AsignacionJornadaGrupo($info);
+             $GrupoJornada->save();
+         }
+     
+         return response()->json($grupo, 200);
+     }
+     
 
     /**
      * Remove the specified resource from storage.

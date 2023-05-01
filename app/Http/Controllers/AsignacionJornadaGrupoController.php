@@ -12,7 +12,5 @@ class AsignacionJornadaGrupoController extends Controller
     $data = AsignacionJornadaGrupo::with(['jornada','grupo']) -> get();
     return response() -> json($data);
   }
-
-
   
 }
