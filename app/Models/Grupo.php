@@ -54,5 +54,11 @@ class Grupo extends Model
         return $this->belongsTo(TipoOferta::class, 'idTipoOferta', 'id');
     }
     
+    //relacion con los grupos jornada pertenecientes a un grupo
+    public function gruposJornada(){
+
+        return $this-> belongsToMany(Jornada::class,GrupoJornada::class,'idGrupo','idJornada');
+
+    }
 
 }

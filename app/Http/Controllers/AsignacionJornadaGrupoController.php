@@ -9,7 +9,8 @@ class AsignacionJornadaGrupoController extends Controller
 {
   public function index()
   {
-    return response()->json(AsignacionJornadaGrupo::all(), 200);
+    $data = AsignacionJornadaGrupo::with(['jornada','grupo']) -> get();
+    return response() -> json($data);
   }
 
 

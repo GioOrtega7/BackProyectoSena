@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\gestion_grupo;
 
 use App\Http\Controllers\Controller;
+use App\Models\AsignacionJornadaGrupo;
 use App\Models\Grupo;
 use App\Models\TipoGrupo;
 use Illuminate\Http\Request;
@@ -29,7 +30,17 @@ class GrupoController extends Controller
 
 
 
-        $grupos = Grupo::with('tipoGrupo', 'lider.persona', 'programa', 'infraestructura', 'nivelFormacion', 'tipoFormacion', 'estadoGrupo', 'tipoOferta');
+        $grupos = Grupo::with(
+                            'tipoGrupo', 
+                            'lider.persona', 
+                            'programa', 
+                            'infraestructura', 
+                            'nivelFormacion', 
+                            'tipoFormacion', 
+                            'estadoGrupo', 
+                            'tipoOferta',
+                            'gruposJornada'
+                        );
 
 
 
@@ -91,15 +102,34 @@ class GrupoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
-    {
-        $data = $request->all();
-        $grupo = new Grupo($data);
-        $grupo->save();
-
-        return response()->json($grupo, 201);
-    }
-
+     public function store(Request $request)
+     {
+         $data = $request->all();
+         $grupo = new Grupo([
+             'nombre' => $data['nombre'],
+             'fechaInicial' => $data['fechaInicial'],
+             'fechaFinal' => $data['fechaFinal'],
+             'observacion' => $data['observacion'],
+             'idTipoGrupo' => $data['idTipoGrupo'],
+             'idLider' => $data['idLider'],
+             'idPrograma' => $data['idPrograma'],
+             'idInfraestructura' => $data['idInfraestructura'],
+             'idNivel' => $data['idNivel'],
+             'idTipoFormacion' => $data['idTipoFormacion'],
+             'idEstado' => $data['idEstado'],
+             'idTipoOferta' => $data['idTipoOferta'],
+         ]);
+         $grupo->save();
+     
+         foreach ($data['grupos_jornada'] as $grupoJornada) {
+             $info = ['idGrupo' => $grupo->id, 'idJornada' => $grupoJornada['idJornada']];
+             $GrupoJornada = new AsignacionJornadaGrupo($info);
+             $GrupoJornada->save();
+         }
+     
+         return response()->json($grupo, 201);
+     }
+     
     /**
      * search a newly created resource in storage.
      *

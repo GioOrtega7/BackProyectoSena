@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActividadProyectoController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\AsignacionJornadaGrupoController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
@@ -149,7 +150,7 @@ Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('gruposjornada', GrupoJornadaController::class);
+Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
 
 Route::resource('niveles_formacion', NivelFormacionController::class);
 
