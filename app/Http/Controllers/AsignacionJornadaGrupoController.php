@@ -13,6 +13,4 @@ class AsignacionJornadaGrupoController extends Controller
     return response() -> json($data);
   }
 
-
-  
 }

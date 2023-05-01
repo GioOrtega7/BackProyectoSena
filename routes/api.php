@@ -28,7 +28,6 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
-use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
@@ -39,11 +38,8 @@ use App\Http\Controllers\PersonController;
 use App\Http\Controllers\RegionalController;
 use App\Http\Controllers\TipoFormacionController;
 use App\Http\Controllers\TipoOfertaController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
-use App\Http\Controllers\VentasController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -166,5 +162,3 @@ Route::resource('personas', PersonController::class);
 Route::resource('regionales', RegionalController::class);
 
 Route::resource('centroFormacion', CentroFormacionController::class);
-
-Route::resource('gruposjornada',AsignacionJornadaGrupoController::class);

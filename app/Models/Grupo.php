@@ -57,7 +57,7 @@ class Grupo extends Model
     //relacion con los grupos jornada pertenecientes a un grupo
     public function gruposJornada(){
 
-        return $this-> belongsToMany(Jornada::class,GrupoJornada::class,'idGrupo','idJornada');
+        return $this-> belongsToMany(Jornada::class,AsignacionJornadaGrupo::class,'idGrupo','idJornada');
 
     }
 
