@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ActividadProyectoController;
 use App\Http\Controllers\AreaController;
-use App\Http\Controllers\AsignacionJornadaGrupoController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
@@ -11,12 +10,9 @@ use App\Http\Controllers\CentroFormacionController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\EstadoGrupoController;
 use App\Http\Controllers\FaseController;
-use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_dia\DiaController;
 use App\Http\Controllers\gestion_dia_jornada\DiaJornadaController;
-use App\Http\Controllers\gestion_grupo\GrupoController;
 use App\Http\Controllers\gestion_jornada\JornadaController;
 use App\Http\Controllers\gestion_mediopago\MedioPagoController;
 use App\Http\Controllers\gestion_notificacion\NotificacionController;
@@ -33,13 +29,21 @@ use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\InfraestructuraController;
-use App\Http\Controllers\NivelFormacionController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\RegionalController;
-use App\Http\Controllers\TipoFormacionController;
-use App\Http\Controllers\TipoOfertaController;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
+use App\Http\Controllers\VentasController;
+
+use App\Http\Controllers\gestion_grupo\AsignacionJornadaGrupoController;
+use App\Http\Controllers\gestion_grupo\EstadoGrupoController;
+use App\Http\Controllers\gestion_grupo\GrupoController;
+use App\Http\Controllers\gestion_grupo\NivelFormacionController;
+use App\Http\Controllers\gestion_grupo\TipoFormacionController;
+use App\Http\Controllers\gestion_grupo\TipoGrupoController;
+use App\Http\Controllers\gestion_grupo\TipoOfertaController;
 
 /*
 |--------------------------------------------------------------------------

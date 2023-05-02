@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\gestion_grupo;
 
+use App\Http\Controllers\Controller;
 use App\Models\TipoFormacion;
 use Illuminate\Http\Request;
 
