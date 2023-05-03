@@ -62,5 +62,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Grupo::class, 'idLider', 'id');
     }
-    
+
+    //relacion con los grupos Many To Many
+    public function grupos()
+    {
+        return $this->belongsToMany(Grupo::class)
+            ->using(AsignacionParticipante::class)
+            ->withPivot(['fechaInicial', 'fechaFinal', 'descripcion']);
+    }
 }

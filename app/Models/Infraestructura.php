@@ -17,4 +17,12 @@ class Infraestructura extends Model
     public function area(){
         return $this -> belongsTo(Area::class,'idArea');
     }
+
+    public function grupos()
+    {
+        return $this->belongsToMany(Grupo::class)
+            ->using(HorarioInfraestructuraGrupo::class)
+            ->withPivot(['fechaInicial', 'fechaFinal']);
+    }
+
 }

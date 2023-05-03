@@ -41,7 +41,7 @@ class GrupoFactory extends Factory
             'idTipoGrupo'       => $tipoGrupo -> id,
             'idLider'           => $lider -> id,
             'idPrograma'        => $programa -> id,
-            'idInfraestructura' => $infraestructura -> id,
+            // 'idInfraestructura' => $infraestructura -> id,
             'idNivel'           => $nivelFormacion -> id,
             'idTipoFormacion'   => $tipoFormacion -> id,
             'idEstado'          => $estado -> id,

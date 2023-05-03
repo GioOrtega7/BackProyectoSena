@@ -143,22 +143,26 @@ Route::resource('dias', DiaController::class);
 //traer diaJornada
 Route::get('diajornada/jornada/{id}', [DiaJornadaController::class, 'showByJornada']);
 
-//grupos
-Route::resource('grupos', GrupoController::class);
-//buscador para el controlador grupos
-Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
-//tipo de grupos
-Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
+Route::middleware(['auth'])->group(function () {
+    //grupos
+    Route::resource('grupos', GrupoController::class);
+    //buscador para el controlador grupos
+    Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
+    //tipo de grupos
+    Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('niveles_formacion', NivelFormacionController::class);
+    Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
 
-Route::resource('tipo_formaciones', TipoFormacionController::class);
+    Route::resource('niveles_formacion', NivelFormacionController::class);
 
-Route::resource('estado_grupos', EstadoGrupoController::class);
+    Route::resource('tipo_formaciones', TipoFormacionController::class);
 
-Route::resource('tipo_ofertas', TipoOfertaController::class);
+    Route::resource('estado_grupos', EstadoGrupoController::class);
+
+    Route::resource('tipo_ofertas', TipoOfertaController::class);
+});
+
 
 Route::resource('personas', PersonController::class);
 

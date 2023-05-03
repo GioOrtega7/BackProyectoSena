@@ -29,9 +29,6 @@ class CreateGrupoTable extends Migration
             $table->unsignedInteger('idPrograma');
             $table->foreign('idPrograma')->references('id')->on('programa');
 
-            $table->unsignedInteger('idInfraestructura');
-            $table->foreign('idInfraestructura')->references('id')->on('infraestructura');
-
             $table->foreignId('idNivel')->references('id')->on('nivelFormacion');
 
             $table->foreignId('idTipoFormacion')->references('id')->on('tipoFormacion');
