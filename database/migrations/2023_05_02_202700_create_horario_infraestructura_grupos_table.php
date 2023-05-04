@@ -21,8 +21,8 @@ class CreateHorarioInfraestructuraGruposTable extends Migration
             $table->unsignedInteger('idGrupo');
             $table->foreign('idGrupo')->references('id')->on('grupo')->onDelete('cascade');
             
-            $table->date('fechaInicial');
-            $table->date('fechaFinal');
+            $table->date('fechaInicial')->nullable(); //Null por pruebas
+            $table->date('fechaFinal')->nullable();
             $table->timestamps();
         });
     }

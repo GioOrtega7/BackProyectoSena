@@ -44,6 +44,8 @@ use App\Http\Controllers\gestion_grupo\NivelFormacionController;
 use App\Http\Controllers\gestion_grupo\TipoFormacionController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_grupo\TipoOfertaController;
+use App\Models\AsignacionParticipante;
+use App\Models\HorarioInfraestructuraGrupo;
 
 /*
 |--------------------------------------------------------------------------
@@ -161,6 +163,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('estado_grupos', EstadoGrupoController::class);
 
     Route::resource('tipo_ofertas', TipoOfertaController::class);
+
+    Route::resource('horario_infraestructura_grupo', HorarioInfraestructuraGrupo::class);
+
+    Route::resource('asignacion_participante', AsignacionParticipante::class);
+
 });
 
 
