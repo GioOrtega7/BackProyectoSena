@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\gestion_infraestructuras;
 
+use App\Http\Controllers\Controller;
 use App\Models\Infraestructura;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,10 @@ class InfraestructuraController extends Controller
      */
     public function index()
     {
-        $data = InfraEstructura::with(['sede','area']) -> get();
+        $data = InfraEstructura::with([
+            'sede',
+            'area'
+        ]) -> get();
         return response() -> json($data);
     }
 
@@ -21,15 +25,34 @@ class InfraestructuraController extends Controller
      */
     public function store(Request $request)
     {
-        $post = new InfraEstructura();
-        $post -> nombreInfraestructura = $request -> nombreInfraestructura;
-        $post -> capacidad = $request -> capacidad;
-        $post -> descripcion = $request -> descripcion;
-        $post -> idSede = $request -> idSede;
-        $post -> idArea = $request -> idArea;
+        $test = json_decode($request->getContent(),false);
+        if(is_array($test)){
+            $data = $request -> all();
+            foreach ($data as $item) {
+                $infr = new Infraestructura();
+                $infr = $this -> guardarInfr($item);
+                $infr -> save();
+            }
+            return response() -> json($data);
+        }
+        if(is_object($test)){
+            $data = $request -> all();
+            $infr = new Infraestructura();
+            $infr = $this -> guardarInfr($data);
+            $infr -> save();
+            return response() -> json($data);
+        }
+    }
 
-        $post -> save();
-
+    private function guardarInfr(Array $data){
+            $infr = new Infraestructura([
+                'nombreInfraestructura' => $data['nombreInfraestructura'],
+                'capacidad' => $data['capacidad'],
+                'descripcion'=> $data['descripcion'],
+                'idSede' => $data['idSede'],
+                'idArea' => $data['idArea']
+            ]);
+            return $infr;     
     }
 
     /**
