@@ -47,29 +47,17 @@ class InfraestructuraController extends Controller
     private function guardarInfr(Array $data){
             //guarda la fecha para usarla en el nombre de los ficheros
             $fecha_actual = date('YmdHis') . '_' . substr(microtime(), 2, 3);
+            
             //la imagen en base64 proveniente desde la solicitud json
             $qrRequest = $data['newQr'];
+
             //nombre que le daremos al archivo
             $fileQrName=$data['nombreInfraestructura'].'_'.$fecha_actual.'_Qr.png';
-            
-            // Decodificar la imagen base64 a su representación binaria
-            $qr_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $qrRequest));
-
-            // Crear un recurso de imagen a partir de la representación binaria
-            $qrImage = imagecreatefromstring($qr_data);
-
-            // Obtener la ruta completa del archivo de imagen
-            $path = storage_path('app/public/images/infraestructuras/qrcode/' . $fileQrName);
-
-            // Asegurarse de que la carpeta exista
-            if (!file_exists(dirname($path))) {
-                mkdir(dirname($path), 0777, true);
-            }
 
             //guarda la ruta para incluirla en el campo codigoQr de infraestructuras
-            $data['codigoQr']='app/public/images/infraestructuras/qrcode' . $fileQrName;
-            // Crear una imagen PNG a partir del recurso de imagen
-            imagepng($qrImage, $path);
+            $data['codigoQr']='app/public/images/infraestructuras/qrcode/' . $fileQrName;
+            
+            $this -> guardarImg($qrRequest,$data['codigoQr']);
 
             $infr = new Infraestructura([
                 'nombreInfraestructura' => $data['nombreInfraestructura'],
@@ -80,6 +68,26 @@ class InfraestructuraController extends Controller
                 'idArea' => $data['idArea']
             ]);
             return $infr;     
+    }
+    private function guardarImg(string $img,string $path){
+       
+        // Decodificar la imagen base64 a su representación binaria
+        $img_data = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $img));
+
+        // Crear un recurso de imagen a partir de la representación binaria
+        $image = imagecreatefromstring($img_data);
+
+        // Obtener la ruta completa del archivo de imagen
+        $storage_in = storage_path($path);
+
+         // Asegurarse de que la carpeta exista
+         if (!file_exists(dirname($storage_in))) {
+            mkdir(dirname($storage_in), 0777, true);//0777 hace referencia a los permisos
+        }
+
+        // Crear una imagen PNG a partir del recurso de imagen
+        imagepng($image, $storage_in);
+
     }
 
     /**
