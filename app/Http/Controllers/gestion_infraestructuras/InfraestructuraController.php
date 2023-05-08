@@ -33,14 +33,12 @@ class InfraestructuraController extends Controller
                 $infr = $this -> guardarInfr($item);
                 $infr -> save();
             }
-            return response() -> json($data);
         }
         if(is_object($test)){
             $data = $request -> all();
             $infr = new Infraestructura();
             $infr = $this -> guardarInfr($data);
             $infr -> save();
-            return response() -> json($data);
         }
     }
 
@@ -55,9 +53,11 @@ class InfraestructuraController extends Controller
             $fileQrName=$data['nombreInfraestructura'].'_'.$fecha_actual.'_Qr.png';
 
             //guarda la ruta para incluirla en el campo codigoQr de infraestructuras
-            $data['codigoQr']='app/public/images/infraestructuras/qrcode/' . $fileQrName;
+            $path='/images/infraestructuras/codigoqr/'.$fileQrName;
             
-            $this -> guardarImg($qrRequest,$data['codigoQr']);
+            $this -> guardarImg($qrRequest,$path);
+
+            $data['codigoQr']=asset($path);
 
             $infr = new Infraestructura([
                 'nombreInfraestructura' => $data['nombreInfraestructura'],
@@ -78,7 +78,7 @@ class InfraestructuraController extends Controller
         $image = imagecreatefromstring($img_data);
 
         // Obtener la ruta completa del archivo de imagen
-        $storage_in = storage_path($path);
+        $storage_in = public_path($path);
 
          // Asegurarse de que la carpeta exista
          if (!file_exists(dirname($storage_in))) {
