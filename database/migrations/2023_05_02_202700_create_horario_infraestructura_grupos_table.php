@@ -15,10 +15,10 @@ class CreateHorarioInfraestructuraGruposTable extends Migration
     {
         Schema::create('horarioInfraestructuraGrupo', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('idInfraestructura');
+            $table->unsignedInteger('idInfraestructura')->nullable();
             $table->foreign('idInfraestructura')->references('id')->on('infraestructura')->onDelete('cascade');
 
-            $table->unsignedInteger('idGrupo');
+            $table->unsignedInteger('idGrupo')->nullable();
             $table->foreign('idGrupo')->references('id')->on('grupo')->onDelete('cascade');
             
             $table->date('fechaInicial')->nullable(); //Null por pruebas

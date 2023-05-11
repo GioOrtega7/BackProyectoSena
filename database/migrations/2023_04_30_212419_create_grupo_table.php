@@ -17,8 +17,8 @@ class CreateGrupoTable extends Migration
 
             $table->increments('id');
             $table->string('nombre');
-            $table->date('fechaInicial');
-            $table->date('fechaFinal');
+            $table->date('fechaInicialGrupo');
+            $table->date('fechaFinalGrupo');
             $table->text('observacion');
 
             $table->foreignId('idTipoGrupo')->references('id')->on('tipoGrupo');

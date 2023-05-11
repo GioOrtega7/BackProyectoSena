@@ -20,7 +20,7 @@ class Grupo extends Model
     }
 
     //Relacion uno a muchos Inversa(Usuario->Grupo)
-    public function lider()
+    public function instructor()
     {
         return $this->belongsTo(User::class, 'idLider', 'id');
     }

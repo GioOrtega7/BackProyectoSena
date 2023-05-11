@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\gestion_grupo;
 
 use App\Http\Controllers\Controller;
+use App\Models\ActivationCompanyUser;
 use App\Models\AsignacionJornadaGrupo;
 use App\Models\AsignacionParticipante;
 use App\Models\Grupo;
 use App\Models\HorarioInfraestructuraGrupo;
+use App\Models\Person;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,20 +24,19 @@ class GrupoController extends Controller
     {
 
         $tipoGrupo       = $request->input('tipogrupo');
-        $lider           = $request->input('idpersona');
+        $instructor      = $request->input('idpersona');
         $programa        = $request->input('nombrePrograma');
         $infraestructura = $request->input('horarioInfraestructuraGrupo');
         $nivelFormacion  = $request->input('nivel');
         $tipoFormacion   = $request->input('nombreTipoFormacion');
         $estadoGrupo     = $request->input('nombreEstado');
         $tipoOferta      = $request->input('nombreOferta');
-
-
+        $gruposJornada   = $request->input('grupos_jornada');
 
         $grupos = Grupo::with([
             'tipoGrupo',
-            'lider.persona',
             'programa',
+            'instructor.persona',
             'infraestructura' => function ($query) {
                 $query->withPivot('fechaInicial', 'fechaFinal'); // Mostrara los datos de la infraestructura
             },                                                   // y ademas los campos restantes de la tabla intermedia
@@ -54,9 +56,9 @@ class GrupoController extends Controller
             });
         }
 
-        if ($lider) {
-            $grupos->whereHas('idpersona', function ($q) use ($lider) {
-                return $q->select('id')->where('id', $lider)->orWhere('contrasena', $lider);
+        if ($instructor) {
+            $grupos->whereHas('idpersona', function ($q) use ($instructor) {
+                return $q->select('id')->where('id', $instructor)->orWhere('contrasena', $instructor);
             });
         }
 
@@ -108,6 +110,15 @@ class GrupoController extends Controller
             });
         }
 
+        // $grupos = Grupo::query();
+        if ($gruposJornada) {
+            $grupos->whereHas('gruposJornada', function ($q) use ($gruposJornada) {
+                return $q->select('id')
+                    ->where('id', $gruposJornada)
+                    ->orWhere('nombreJornada', $gruposJornada);
+            })->with('jornadas');
+        }
+
         return response()->json($grupos->get());
     }
 
@@ -123,8 +134,8 @@ class GrupoController extends Controller
         $data = $request->all();
         $grupo = new Grupo([
             'nombre' => $data['nombre'],
-            'fechaInicial' => $data['fechaInicial'],
-            'fechaFinal' => $data['fechaFinal'],
+            'fechaInicialGrupo' => $data['fechaInicialGrupo'],
+            'fechaFinalGrupo' => $data['fechaFinalGrupo'],
             'observacion' => $data['observacion'],
             'idTipoGrupo' => $data['idTipoGrupo'],
             'idLider' => $data['idLider'],
@@ -136,42 +147,72 @@ class GrupoController extends Controller
         ]);
         $grupo->save();
 
-        if (isset($data['infraestructura'])) {
-            foreach ($data['infraestructura'] as $horarioGrupoInfraestructura) {
-                $info = [
-                    'idGrupo' => $grupo->id,
-                    'idInfraestructura' => $horarioGrupoInfraestructura['idInfraestructura'],
-                    'fechaInicial' => $horarioGrupoInfraestructura['fechaInicial'],
-                    'fechaFinal' => $horarioGrupoInfraestructura['fechaFinal']
-                ];
-                $HorarioGrupoInfraestructura = new HorarioInfraestructuraGrupo($info);
-                $HorarioGrupoInfraestructura->save();
-            }
-        }
 
-        if (isset($data['grupos_jornada'])) {
-            foreach ($data['grupos_jornada'] as $grupoJornada) {
-                $info = ['idGrupo' => $grupo->id, 'idJornada' => $grupoJornada['idJornada']];
-                $GrupoJornada = new AsignacionJornadaGrupo($info);
-                $GrupoJornada->save();
-            }
-        }
+        // foreach ($request->grupos_jornada as $val) {
+        //     foreach ($val as $val2) {
+        //         $info = ['idGrupo' => $grupo->id, 'idJornada' => $val2];
+        //         $asignacionJornada = new AsignacionJornadaGrupo($info);
+        //         $asignacionJornada->save();
+        //     }
+        // }
 
-        if (isset($data['participantes'])) {
-            foreach ($data['participantes'] as $asignacionParticipante) {
-                $info = [
-                    'idGrupo'        => $grupo->id,
-                    'idParticipante' => $asignacionParticipante['idParticipante'],
-                    'fechaInicial'   => $asignacionParticipante['fechaInicial'],
-                    'fechaFinal'     => $asignacionParticipante['fechaFinal'],
-                    'descripcion'    => $asignacionParticipante['descripcion']
-                ];
-                $asignacionParticipante = new AsignacionParticipante($info);
-                $asignacionParticipante->save();
-            }
+        // foreach ($request->infraestructura as $val) {
+        //     foreach ($val as $val2) {
+        //         $info = ['idGrupo' => $grupo->id, 'idInfraestructura' => $val2];
+        //         $horarioInfraestructura = new HorarioInfraestructuraGrupo($info);
+        //         $horarioInfraestructura->save();
+        //     }
+        // }
+
+
+        $data = $request->all();
+
+        $infraestructura = $data['infraestructura'];
+
+        // dd($infraestructura);
+
+       foreach ($infraestructura as $infraItem) {
+
+        // var_dump($infraItem);
+
+        $this->guardarHorarioInfra($infraItem, $grupo->id);
+        
+            // foreach ($val as $val2) {
+            //     $info = [
+            //         'idGrupo' => $grupo->id,
+            //         'idInfraestructura' => $val2,
+            //         'fechaInicial' => $request->fechaInicial,
+            //         'fechaFinal' => $request->fechaFinal
+            //     ];
+            //     $horarioInfraestructura = new HorarioInfraestructuraGrupo($info);
+            //     $horarioInfraestructura->save();
+            // }
         }
+       
+
+        // if (isset($request->participantes)) {
+        //     foreach ($request->participantes as $val) {
+        //         foreach ($val as $val2) {
+        //             $info = ['idGrupo' => $grupo->id, 'idParticipante' => $val2];
+        //             $participante = new AsignacionParticipante($info);
+        //             $participante->save();
+        //         }
+        //     }
+        // }
 
         return response()->json($grupo, 201);
+    }
+
+    private function guardarHorarioInfra(Array $data,int $idGrupo){
+        var_dump($data);
+        $horarioInfraestructura = new HorarioInfraestructuraGrupo([
+            'idGrupo' => $idGrupo,
+            'idInfraestructura' => $data['idInfraestructura'],
+            'fechaInicial'      => $data['fechaInicial'],
+            'fechaFinal'        => $data['fechaFinal']
+        ]);
+        // var_dump($horarioInfraestructura);
+        $horarioInfraestructura->save();
     }
 
     /**
@@ -230,8 +271,8 @@ class GrupoController extends Controller
         $grupo = Grupo::findOrFail($id);
         $grupo->update([
             'nombre' => $data['nombre'],
-            'fechaInicial' => $data['fechaInicial'],
-            'fechaFinal' => $data['fechaFinal'],
+            'fechaInicialGrupo' => $data['fechaInicialGrupo'],
+            'fechaFinalGrupo' => $data['fechaFinalGrupo'],
             'observacion' => $data['observacion'],
             'idTipoGrupo' => $data['idTipoGrupo'],
             'idLider' => $data['idLider'],
@@ -248,41 +289,59 @@ class GrupoController extends Controller
         // Eliminar todas las asignaciones de jornada previas
         AsignacionJornadaGrupo::where('idGrupo', $id)->delete();
 
-        // Eliminar todas las asignaciones de usuario previas
-        AsignacionParticipante::where('idGrupo', $id)->delete();
 
-        if (isset($data['infraestructura'])) {
-            foreach ($data['infraestructura'] as $horarioGrupoInfraestructura) {
+        foreach ($request->grupos_jornada as $val) {
+            foreach ($val as $val2) {
+                $info = ['idGrupo' => $grupo->id, 'idJornada' => $val2];
+                $asignacionJornada = new AsignacionJornadaGrupo($info);
+                $asignacionJornada->save();
+            }
+        }
+
+        // foreach ($request->infraestructura as $val) {
+        //     foreach ($val as $val2) {
+        //         $info = ['idGrupo' => $grupo->id, 'idInfraestructura' => $val2];
+        //         $horarioInfraestructura = new HorarioInfraestructuraGrupo($info);
+        //         $horarioInfraestructura->save();
+        //     }
+        // }
+
+        // foreach ($data['infraestructura'] as $horarioInfraestructura) {
+        //     $info = [
+        //         'idGrupo' => $grupo->id,
+        //         'idInfraestructura' => $horarioInfraestructura['idInfraestructura'],
+        //         'fechaInicial'      => $horarioInfraestructura,
+        //         'fechaFinal'        => $horarioInfraestructura
+        //     ];
+        //     $horarioInfraestructura = new HorarioInfraestructuraGrupo($info);
+        //     $horarioInfraestructura->save();
+        // }
+
+
+        foreach ($request->infraestructura as $val) {
+            var_dump($request);
+            foreach ($val as $val2) {
                 $info = [
                     'idGrupo' => $grupo->id,
-                    'idInfraestructura' => $horarioGrupoInfraestructura['idInfraestructura'],
-                    'fechaInicial' => $horarioGrupoInfraestructura['fechaInicial'],
-                    'fechaFinal' => $horarioGrupoInfraestructura['fechaFinal']
+                    'idInfraestructura' => $val2->idInfraestructura,
+                    'fechaInicialGrupo' => $request->fechaInicialGrupo,
+                    'fechaFinalGrupo' => $request->fechaFinalGrupo
                 ];
-                $HorarioGrupoInfraestructura = new HorarioInfraestructuraGrupo($info);
-                $HorarioGrupoInfraestructura->save();
+                $horarioInfraestructura = new HorarioInfraestructuraGrupo($info);
+                $horarioInfraestructura->update();
+
             }
         }
+        
 
-        if (isset($data['grupos_jornada'])) {
-            foreach ($data['grupos_jornada'] as $grupoJornada) {
-                $info = ['idGrupo' => $grupo->id, 'idJornada' => $grupoJornada['idJornada']];
-                $GrupoJornada = new AsignacionJornadaGrupo($info);
-                $GrupoJornada->save();
-            }
-        }
-
-        if (isset($data['participantes'])) {
-            foreach ($data['participantes'] as $asignacionParticipante) {
-                $info = [
-                    'idGrupo'        => $grupo->id,
-                    'idParticipante' => $asignacionParticipante['idParticipante'],
-                    'fechaInicial'   => $asignacionParticipante['fechaInicial'],
-                    'fechaFinal'     => $asignacionParticipante['fechaFinal'],
-                    'descripcion'    => $asignacionParticipante['descripcion']
-                ];
-                $asignacionParticipante = new AsignacionParticipante($info);
-                $asignacionParticipante->save();
+        if (isset($request->participantes)) {
+            AsignacionParticipante::where('idGrupo', $id)->delete();
+            foreach ($request->participantes as $val) {
+                foreach ($val as $val2) {
+                    $info = ['idGrupo' => $grupo->id, 'idParticipante' => $val2];
+                    $participante = new AsignacionParticipante($info);
+                    $participante->save();
+                }
             }
         }
 
@@ -296,25 +355,6 @@ class GrupoController extends Controller
      * @param  \App\Models$grupo  $grupo
      * @return \Illuminate\Http\Response
      */
-    // public function destroy($id)
-    // {
-    //     DB::beginTransaction();
-
-    //     try {
-    //         $grupo = Grupo::findOrFail($id);
-    //         $grupo->horarios()->detach(); // Eliminar registros dependientes en la tabla pivote
-    //         $grupo->delete(); // Eliminar registro de grupo
-    //         DB::commit();
-    //         return response()->json(['message' => 'Registro eliminado correctamente']);
-    //     } catch (\Exception $e) {
-    //         DB::rollBack();
-    //         if ($e->getCode() == 23000) {
-    //             return response()->json(['error' => 'No se puede eliminar el registro porque existen registros dependientes en otras tablas. Primero debe eliminar los registros dependientes antes de eliminar el grupo.'], 500);
-    //         } else {
-    //             return response()->json(['error' => 'Ha ocurrido un error al eliminar el registro. Por favor, inténtelo de nuevo más tarde.'], 500);
-    //         }
-    //     }
-    // }
 
     public function destroy(int $id)
     {
@@ -324,4 +364,5 @@ class GrupoController extends Controller
             'eliminada'
         ]);
     }
+    
 }

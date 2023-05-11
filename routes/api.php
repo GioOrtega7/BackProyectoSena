@@ -44,6 +44,7 @@ use App\Http\Controllers\gestion_grupo\NivelFormacionController;
 use App\Http\Controllers\gestion_grupo\TipoFormacionController;
 use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_grupo\TipoOfertaController;
+use App\Http\Controllers\HorarioInfraestructuraGrupoController;
 use App\Models\AsignacionParticipante;
 use App\Models\HorarioInfraestructuraGrupo;
 
@@ -145,30 +146,34 @@ Route::resource('dias', DiaController::class);
 //traer diaJornada
 Route::get('diajornada/jornada/{id}', [DiaJornadaController::class, 'showByJornada']);
 
+//grupos
+Route::resource('grupos', GrupoController::class);
+//buscador para el controlador grupos
+Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
 
-Route::middleware(['auth'])->group(function () {
-    //grupos
-    Route::resource('grupos', GrupoController::class);
-    //buscador para el controlador grupos
-    Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
-    //tipo de grupos
-    Route::resource('tipogrupos', TipoGrupoController::class);
+Route::get('usuarios_instructores', [UserController::class, 'instructores']);
 
-    Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
+//tipo de grupos
+Route::resource('tipogrupos', TipoGrupoController::class);
 
-    Route::resource('niveles_formacion', NivelFormacionController::class);
+Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
 
-    Route::resource('tipo_formaciones', TipoFormacionController::class);
+Route::get('jornadagrupo/grupo/{id}', [AsignacionJornadaGrupoController::class, 'showByGrupo']);
 
-    Route::resource('estado_grupos', EstadoGrupoController::class);
+Route::resource('niveles_formacion', NivelFormacionController::class);
 
-    Route::resource('tipo_ofertas', TipoOfertaController::class);
+Route::resource('tipo_formaciones', TipoFormacionController::class);
 
-    Route::resource('horario_infraestructura_grupo', HorarioInfraestructuraGrupo::class);
+Route::resource('estado_grupos', EstadoGrupoController::class);
 
-    Route::resource('asignacion_participante', AsignacionParticipante::class);
+Route::resource('tipo_ofertas', TipoOfertaController::class);
 
-});
+Route::resource('horario_infraestructura_grupo', HorarioInfraestructuraGrupoController::class);
+
+Route::get('horario_infraestructura_grupo/grupo/{id}', [HorarioInfraestructuraGrupoController::class, 'infraestructuraByGrupo']);
+
+Route::resource('asignacion_participante', AsignacionParticipante::class);
+
 
 
 Route::resource('personas', PersonController::class);
