@@ -110,6 +110,9 @@ Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
 Route::resource('tipo_programas',  TipoProgramasController::class);
 //ruta para programas
 Route::resource('programas',  ProgramaController::class);
+
+Route::get('programas/{id}', 'ProgramaController@mostrarPrograma');
+
 //ruta para proyecto formativo
 Route::resource('proyecto_formativo', ProyectoFormativoController::class);
 //ruta para fases
