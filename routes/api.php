@@ -44,6 +44,7 @@ use App\Http\Controllers\VentasController;
 use App\Models\EstadoGrupo;
 use App\Models\NivelFormacion;
 use App\Models\User;
+use App\Http\Controllers\asignacionCompetenciaRapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -168,3 +169,6 @@ Route::resource('personas', PersonController::class);
 
 //regional
 Route::resource('regionales', RegionalController::class);
+
+//ruta asignacion Competencias raps 
+Route::resource('competencia_rap', asignacionCompetenciaRapController::class);

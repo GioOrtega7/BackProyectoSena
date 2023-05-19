@@ -20,14 +20,17 @@ class Competencias extends Model
 
     public $timestamps =false;
 
+
+    //relacion uno a muchos
     public function actividadProyecto()
     {
         return $this->belongsTo(ActividadProyecto::class, 'idActividadProyecto');
     }
     
+    //relacion muchos a  muchos
     public function resultadoAprendizajes()
     {
-        return $this->belongsToMany(resultadoAprendizaje::class);
+        return $this->belongsToMany(resultadoAprendizaje::class, 'asignacionCompetenciasRaps');
     }
 }
 

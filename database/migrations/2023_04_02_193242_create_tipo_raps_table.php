@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResultadoAprendizajesTable extends Migration
+class CreateTipoRapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateResultadoAprendizajesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resultadoAprendizaje', function (Blueprint $table) {
+        Schema::create('tipoRaps', function (Blueprint $table) {
             $table->increments('id');
-            $table->string ('rap',20);
-            $table->string('codigoRap',50);
-            $table->integer('numeroHoras');
-            $table->unsignedInteger('idTipoRaps');
-            $table->foreign('idTipoRaps')->references('id')->on('tipoRaps');
-
+            $table->text('nombre');
+            $table->text('codigo');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateResultadoAprendizajesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resultadoAprendizaje');
+        Schema::dropIfExists('tipoRaps');
     }
 }
