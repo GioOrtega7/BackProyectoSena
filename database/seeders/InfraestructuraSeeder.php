@@ -50,7 +50,8 @@ class InfraestructuraSeeder extends Seeder
         int $capacidad,
         string $descripcion,
         int $idSede,
-        int $idArea)
+        int $idArea
+        )
     {
         $infraestructura = new Infraestructura();
         $infraestructura->nombreInfraestructura = $nombreInfraestructura;

@@ -13,4 +13,9 @@ class NivelFormacion extends Model
 
     protected $guarded = [];
 
+    public function grupos()
+    {
+        return $this->hasMany(Grupo::class, 'idNivel');
+    }
+
 }

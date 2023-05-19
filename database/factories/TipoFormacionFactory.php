@@ -13,8 +13,13 @@ class TipoFormacionFactory extends Factory
      */
     public function definition()
     {
+
+        $tipoFormaciones = ['PRESENCIAL', 'VIRTUAL'];
+        shuffle($tipoFormaciones); // Reorganizar aleatoriamente la lista de niveles
+        $tipoFormacionesAleatorio = array_pop($tipoFormaciones); // Seleccionar el último elemento de la lista reorganizada
+
         return [
-            'nombreTipoFormacion' => $this->faker->randomElement(['PRESENCIAL', 'VIRTUAL']),
+            'nombreTipoFormacion' => $tipoFormacionesAleatorio,
         ];
     }
 }

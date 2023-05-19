@@ -13,8 +13,13 @@ class NivelFormacionFactory extends Factory
      */
     public function definition()
     {
+        $niveles = ['ESPECIALIZACIÓN', 'TECNÓLOGO', 'TÉCNICO'];
+        shuffle($niveles); // Reorganizar aleatoriamente la lista de niveles
+        $nivelAleatorio = array_pop($niveles); // Seleccionar el último elemento de la lista reorganizada
+
         return [
-            'nivel' => $this->faker->randomElement(['ESPECIALIZACIÓN', 'TECNÓLOGO', 'TÉCNICO']),
+            'nivel' => $nivelAleatorio,
         ];
     }
+    
 }

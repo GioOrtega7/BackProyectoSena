@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\Competencias;
 use App\Models\EstadoGrupo;
+use App\Models\Jornada;
 use App\Models\NivelFormacion;
 use App\Models\Programa;
 use App\Models\TipoFormacion;
@@ -23,6 +24,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+
+        Jornada::factory(3)->create();
 
         $path = 'database/seeders/sql/countries.sql';
         DB::unprepared(file_get_contents($path));
@@ -48,20 +52,30 @@ class DatabaseSeeder extends Seeder
         $this->call(RoleSeeder::class);
         $this->call(PersonSeeder::class);
 
+        $path = 'database/seeders/sql/regionales.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/centroFormacion.sql';
+        DB::unprepared(file_get_contents($path));
         $path = 'database/seeders/sql/sedes.sql';
         DB::unprepared(file_get_contents($path));
         $path = 'database/seeders/sql/areas.sql';
         DB::unprepared(file_get_contents($path));
-        $path = 'database/seeders/sql/infraestructuras.sql';
+       $path = 'database/seeders/sql/infraestructuras.sql';
         DB::unprepared(file_get_contents($path));
 
         $this->call(DiaSeeder::class);
 
-        TipoGrupo::factory(10)->create();
-        EstadoGrupo::factory(10)->create();
-        NivelFormacion::factory(10)->create();
-        TipoFormacion::factory(10)->create();
-        TipoOferta::factory(10)->create();
+        $path = 'database/seeders/sql/tipo_grupo.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/estado_grupo.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/nivel_formacion.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/tipo_formacion.sql';
+        DB::unprepared(file_get_contents($path));
+        $path = 'database/seeders/sql/tipo_oferta.sql';
+        DB::unprepared(file_get_contents($path));
+        
         Grupo::factory(10)->create();
 
     }

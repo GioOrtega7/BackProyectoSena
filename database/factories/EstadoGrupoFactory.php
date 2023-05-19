@@ -13,8 +13,12 @@ class EstadoGrupoFactory extends Factory
      */
     public function definition()
     {
+        $estados = ['ACTIVO', 'FINALIZADO', 'CAIDA'];
+        shuffle($estados);  // Reorganizar aleatoriamente la lista de estados
+        $estadoAleatorio = array_pop($estados);  // Seleccionar el último elemento de la lista reorganizada
+
         return [
-            'nombreEstado' => $this->faker->randomElement(['ACTIVO', 'FINALIZADO', 'CAIDA']),
+            'nombreEstado' => $estadoAleatorio,
         ];
     }
 }

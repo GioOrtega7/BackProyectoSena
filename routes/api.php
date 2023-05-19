@@ -1,20 +1,17 @@
 <?php
 
 use App\Http\Controllers\ActividadProyectoController;
-use App\Http\Controllers\AreaController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\UserController;
+use App\Http\Controllers\CentroFormacionController;
 use App\Http\Controllers\gestion_programas\CompetenciasController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CountryController;
-use App\Http\Controllers\EstadoGrupoController;
 use App\Http\Controllers\FaseController;
-use App\Http\Controllers\gestion_grupo\TipoGrupoController;
 use App\Http\Controllers\gestion_dia\DiaController;
 use App\Http\Controllers\gestion_dia_jornada\DiaJornadaController;
-use App\Http\Controllers\gestion_grupo\GrupoController;
 use App\Http\Controllers\gestion_jornada\JornadaController;
 use App\Http\Controllers\gestion_mediopago\MedioPagoController;
 use App\Http\Controllers\gestion_notificacion\NotificacionController;
@@ -26,25 +23,18 @@ use App\Http\Controllers\gestion_tipotransaccion\TipoTransaccionController;
 use App\Http\Controllers\gestion_usuario\UserController as Gestion_usuarioUserController;
 use App\Http\Controllers\gestion_programas\resultadoAprendizajeController;
 use App\Http\Controllers\gestion_programas\actividadAprendizajeController;
-use App\Http\Controllers\GrupoJornadaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\ProyectoFormativoController;
 use App\Http\Controllers\TipoProgramasController;
-use App\Http\Controllers\SedeController;
-use App\Http\Controllers\InfraestructuraController;
-use App\Http\Controllers\NivelFormacionController;
 use App\Http\Controllers\PersonController;
 use App\Http\Controllers\RegionalController;
-use App\Http\Controllers\TipoFormacionController;
-use App\Http\Controllers\TipoOfertaController;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\VentasController;
 use App\Models\EstadoGrupo;
 use App\Models\NivelFormacion;
 use App\Models\User;
-use App\Http\Controllers\asignacionCompetenciaRapController;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,7 +117,7 @@ Route::resource('ciudades', CityController::class);
 Route::get('ciudades/departamento/{id}', [CityController::class, 'showByDepartamento']);
 
 //rutas sede -> revisar y optimizar
-Route::resource('sedes', SedeController::class);
+Route::resource('sedes',SedeController::class);
 Route::get('sedes/ciudad/{id}', [SedeController::class, 'showByCiudad']);
 
 //ruta de areas
@@ -151,11 +141,16 @@ Route::get('diajornada/jornada/{id}', [DiaJornadaController::class, 'showByJorna
 Route::resource('grupos', GrupoController::class);
 //buscador para el controlador grupos
 Route::get('obtenergrupos', [GrupoController::class, 'buscarGrupos']);
+
+Route::get('usuarios_instructores', [UserController::class, 'instructores']);
+
 //tipo de grupos
 Route::resource('tipogrupos', TipoGrupoController::class);
 
-Route::resource('gruposjornada', GrupoJornadaController::class);
-// Route::resource('lideres', User::class);
+Route::resource('gruposjornada', AsignacionJornadaGrupoController::class);
+
+Route::get('jornadagrupo/grupo/{id}', [AsignacionJornadaGrupoController::class, 'showByGrupo']);
+
 Route::resource('niveles_formacion', NivelFormacionController::class);
 
 Route::resource('tipo_formaciones', TipoFormacionController::class);
@@ -164,11 +159,15 @@ Route::resource('estado_grupos', EstadoGrupoController::class);
 
 Route::resource('tipo_ofertas', TipoOfertaController::class);
 
+Route::resource('horario_infraestructura_grupo', HorarioInfraestructuraGrupoController::class);
+
+Route::get('horario_infraestructura_grupo/grupo/{id}', [HorarioInfraestructuraGrupoController::class, 'infraestructuraByGrupo']);
+
+Route::resource('asignacion_participante', AsignacionParticipante::class);
+
+
 
 Route::resource('personas', PersonController::class);
 
 //regional
 Route::resource('regionales', RegionalController::class);
-
-//ruta asignacion Competencias raps 
-Route::resource('competencia_rap', asignacionCompetenciaRapController::class);

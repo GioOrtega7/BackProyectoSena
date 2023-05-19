@@ -15,7 +15,7 @@ class TipoGrupo extends Model
 
     //Relacion uno a muchos (Grupo)
     public function grupos(){
-        return $this->hasMany(Grupo::class);
+        return $this->hasMany(Grupo::class, 'idTipoGrupo');
     }
 
 }
