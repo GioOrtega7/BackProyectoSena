@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ActividadProyectoController;
+use App\Http\Controllers\asignacionCompetenciaRapController;
 use App\Http\Controllers\gestion_empresa\CompanyController;
 use App\Http\Controllers\gestion_rol\RolController;
 use App\Http\Controllers\auth\LoginController;
@@ -171,3 +172,6 @@ Route::resource('personas', PersonController::class);
 
 //regional
 Route::resource('regionales', RegionalController::class);
+
+//asignacion competencias raps
+Route::get('competenciaRap/competencia/{id}', [asignacionCompetenciaRapController::class, 'showByCompetencia']);

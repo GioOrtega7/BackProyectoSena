@@ -29,7 +29,7 @@ class resultadoAprendizaje extends Model
     //relacion muchos a muchos
     public function competencias()
     {
-        return $this->belongsToMany(Competencias::class, 'asignacionConpetenciasRaps');
+        return $this->belongsTo(Competencias::class);
     }
 
 }

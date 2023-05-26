@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Competencias extends Model
 {
     use HasFactory;
-    protected $guarded=[];
+    public static $snakeAttributes = false;
     protected $table = "competencias";
 
     protected $fillable = [
@@ -28,9 +28,9 @@ class Competencias extends Model
     }
     
     //relacion muchos a  muchos
-    public function resultadoAprendizajes()
+    public function competenciaRap()
     {
-        return $this->belongsToMany(resultadoAprendizaje::class, 'asignacionCompetenciasRaps');
+        return $this->belongsToMany(AsignacionCompetenciaRap::class, 'asignacionCompetenciasRaps', 'idCompetencia', 'idRap');
     }
 }
 
