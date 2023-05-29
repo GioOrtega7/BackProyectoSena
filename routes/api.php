@@ -95,15 +95,10 @@ Route::resource('competencias', CompetenciasController::class);
 Route::resource('resultadoAprendizaje', resultadoAprendizajeController::class);
 //rutas para actividad aprendizaje 3 vanesa
 Route::resource('actividadAprendizaje', actividadAprendizajeController::class);
-
-
-
 //ruta tipo_programas
 Route::resource('tipo_programas',  TipoProgramasController::class);
 //ruta para programas
 Route::resource('programas',  ProgramaController::class);
-
-Route::get('programas/{id}', 'ProgramaController@mostrarPrograma');
 
 //ruta para proyecto formativo
 Route::resource('proyecto_formativo', ProyectoFormativoController::class);
