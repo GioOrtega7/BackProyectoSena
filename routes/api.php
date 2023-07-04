@@ -36,6 +36,8 @@ use App\Http\Controllers\VentasController;
 use App\Models\EstadoGrupo;
 use App\Models\NivelFormacion;
 use App\Models\User;
+use App\Http\Controllers\CargaNominaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -170,3 +172,19 @@ Route::resource('regionales', RegionalController::class);
 
 //asignacion competencias raps
 Route::get('competenciaRap/competencia/{id}', [asignacionCompetenciaRapController::class, 'showByCompetencia']);
+
+//EXCEL NOMINA GIO
+//Route::post('http://127.0.0.1:8000/api/import-excel', [CargaNominaController::class, 'import']);
+//Route::post('/api/import-excel', 'ExcelController@import');
+//Route::resource('carga_nominas', CargaNominaController::class);
+
+
+
+Route::post('carganomina', [CargaNominaController::class, 'prueba']);
+
+
+Route::get('carganomina/{cedula}', [CargaNominaController::class, 'show']);
+
+Route::get('/ruta-sencilla', function () {
+    echo 'Entro satisfactoriamente';
+});

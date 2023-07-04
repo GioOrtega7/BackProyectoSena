@@ -14,5 +14,7 @@ class DiaJornadaController extends Controller
             ->where('idJornada', $id)
             ->get();
         return response()->json($data);
+
+        
     }
 }
