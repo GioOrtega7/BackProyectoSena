@@ -185,6 +185,8 @@ Route::post('carganomina', [CargaNominaController::class, 'prueba']);
 
 Route::get('carganomina/{cedula}', [CargaNominaController::class, 'show']);
 
+Route::get('pdfprueba', [CargaNominaController::class, 'pdf']);
+
 Route::get('/ruta-sencilla', function () {
     echo 'Entro satisfactoriamente';
 });

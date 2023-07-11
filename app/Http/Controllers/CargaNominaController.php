@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use Dompdf\Dompdf;
 
 
 
@@ -53,7 +54,7 @@ class CargaNominaController extends Controller
     
     // Validar el tipo de archivo
     if ($file->getClientOriginalExtension() !== 'xlsx') {
-        return response()->json(['error' => 'El archivo debe ser de tipo XLSX'], 400);
+        return response()->json(['error' => ' Extension incompatible El archivo debe ser de tipo XLSX'], 400);
     }
     
     // Crear una instancia del lector de archivos de Excel
@@ -112,7 +113,7 @@ class CargaNominaController extends Controller
         
         // Validar el tipo de archivo (opcional)
             if ($file->getClientOriginalExtension() !== 'xlsx') {
-            return response()->json(['error' => 'El archivo debe ser de tipo XLSX'], 400);
+            return response()->json(['error' => 'Extension incompatible El archivo debe ser de tipo XLSX'], 400);
             }
         }
         // Crear una instancia del lector de archivos de Excel
@@ -214,13 +215,23 @@ class CargaNominaController extends Controller
         //
     }
 
-     //public function import(Request $request)
-    //{
-       // $file = $request->file('excelFile');
+     public function pdf(Request $request)
+    {
 
-        // Aquí puedes utilizar phpoffice/phpspreadsheet para leer los datos del archivo
-        // y procesarlos según tus necesidades (por ejemplo, guardarlos en la base de datos).
+        $dompdf = new Dompdf();
 
-       // return response()->json(['message' => 'Archivo importado correctamente']);
-    //}
+        $html = file_get_contents('C:\xampp\htdocs\senaWebBack\certificado.html');
+
+        
+        $dompdf->loadHtml($html);
+        $dompdf->render();
+        $pdfOutput = $dompdf->output();
+        
+        return response($pdfOutput, 200)
+            ->header('Content-Type', 'application/pdf');
+            //->header('Content-Disposition', 'attachment; filename="certificado.pdf"');
+        
+
+
+    }
 }
