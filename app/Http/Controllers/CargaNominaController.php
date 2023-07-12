@@ -215,17 +215,39 @@ class CargaNominaController extends Controller
         //
     }
 
-     public function pdf(Request $request)
+    public function pdf(Request $request)
     {
+
 
         $dompdf = new Dompdf();
 
-        $html = file_get_contents('C:\xampp\htdocs\senaWebBack\certificado.html');
+        $dompdf->setHttpContext(
+            stream_context_create([
+                'ssl' => [
+                    'verify_peer' => FALSE,
+                    'verify_peer_name' => FALSE,
+                ],
+                'http' => [
+                    'ignore_errors' => TRUE,
+                ],
+            ])
+        );
+
+
+
+
+
+
+
+
+        $html = file_get_contents('C:\xampp\htdocs\BackProyectoSena\certificado.html');
 
         
         $dompdf->loadHtml($html);
         $dompdf->render();
         $pdfOutput = $dompdf->output();
+
+
         
         return response($pdfOutput, 200)
             ->header('Content-Type', 'application/pdf');
