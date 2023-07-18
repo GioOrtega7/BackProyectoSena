@@ -234,13 +234,7 @@ class CargaNominaController extends Controller
         );
 
 
-
-
-
-
-
-
-        $html = file_get_contents('C:\xampp\htdocs\BackProyectoSena\certificado.html');
+        $html = file_get_contents('C:\xampp\htdocs\senaWebBack\certificado.html');
 
         
         $dompdf->loadHtml($html);
