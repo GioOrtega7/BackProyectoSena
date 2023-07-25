@@ -37,6 +37,9 @@ use App\Models\EstadoGrupo;
 use App\Models\NivelFormacion;
 use App\Models\User;
 use App\Http\Controllers\CargaNominaController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\MaterialFormacionController;
+
 
 
 /*
@@ -190,3 +193,7 @@ Route::get('pdfprueba', [CargaNominaController::class, 'pdf']);
 Route::get('/ruta-sencilla', function () {
     echo 'Entro satisfactoriamente';
 });
+
+Route::post('variosarchivos', [FileController::class, 'upload']);
+
+Route::resource('MaterialFormacion', MaterialFormacionController::class);

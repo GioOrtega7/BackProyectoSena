@@ -14,7 +14,9 @@ class MaterialFormacionController extends Controller
      */
     public function index()
     {
-        //
+        $materialFormacion = MaterialFormacion::all();
+        return response()->json($materialFormacion);
+        
     }
 
     /**
@@ -25,7 +27,12 @@ class MaterialFormacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $materialFormacions=new MaterialFormacion($data);
+        $materialFormacions->save();
+
+        return response()->json($materialFormacions);
+        
     }
 
     /**
@@ -34,9 +41,11 @@ class MaterialFormacionController extends Controller
      * @param  \App\Models\MaterialFormacion  $materialFormacion
      * @return \Illuminate\Http\Response
      */
-    public function show(MaterialFormacion $materialFormacion)
-    {
-        //
+    public function show(int $id)
+    {   
+        $materialFormacion=MaterialFormacion::find($id);
+        return response()->json($materialFormacion);
+        
     }
 
     /**
@@ -46,9 +55,17 @@ class MaterialFormacionController extends Controller
      * @param  \App\Models\MaterialFormacion  $materialFormacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MaterialFormacion $materialFormacion)
+    public function update(Request $request, int $id)
     {
-        //
+        $data = $request->all();
+        $materialFormacion=MaterialFormacion::findOrFail($id);
+        $materialFormacion->fill($data);
+        $materialFormacion->save();
+
+        return response()->json($materialFormacion);
+       
+
+       
     }
 
     /**
@@ -57,8 +74,12 @@ class MaterialFormacionController extends Controller
      * @param  \App\Models\MaterialFormacion  $materialFormacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MaterialFormacion $materialFormacion)
+    public function destroy(int $id)
     {
-        //
+        $materialFormacion=MaterialFormacion::findOrFail($id);
+        $materialFormacion->delete();
+
+        return response()->json([],204);
+        
     }
 }

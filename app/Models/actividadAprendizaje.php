@@ -20,6 +20,11 @@ class actividadAprendizaje extends Model
     ];
 
     public $timestamps =false;
+
+/*     public function materialFormaciones()
+    {
+        return $this->hasMany(MaterialFormacion::class, 'idAA');
+    } */
     public function rap()
     {
         return $this->belongsTo(resultadoAprendizaje::class, 'rap');

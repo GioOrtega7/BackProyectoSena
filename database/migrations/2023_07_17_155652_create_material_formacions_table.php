@@ -15,17 +15,17 @@ class CreateMaterialFormacionsTable extends Migration
     {
         Schema::create('material_formacions', function (Blueprint $table) {
             $table->id();
-            $table->string('codigoMM')->nullable();
+            $table->string('codigoMF')->nullable();
             $table->string('descripcion')->nullable();
             $table->string('rutaarchivo')->nullable();
 
-            $table->unsignedInteger('idAA')->nullable();
+/*             $table->unsignedInteger('idAA')->nullable(); */
             // Resto de las columnas de la tabla materialformacion
             
-            $table->foreign('idAA')
+/*             $table->foreign('idAA')
                   ->references('id')
                   ->on('actividadaprendizaje')
-                  ->onDelete('cascade');
+                  ->onDelete('cascade'); */
 
 
 
